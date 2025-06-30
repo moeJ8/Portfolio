@@ -1,6 +1,5 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useState } from 'react';
-import dmtLogo from '../assets/dmt-logo.jpg';
 import DarkModeToggle from './DarkModeToggle';
 
 const Navbar = () => {
@@ -34,18 +33,16 @@ const Navbar = () => {
           {/* Logo Section */}
           <Link to="/" className="flex items-center space-x-4 group">
             <div className="relative">
-              <img 
-                src={dmtLogo} 
-                className="h-12 w-12 rounded-lg object-cover transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-md" 
-                alt="DMT Logo" 
-              />
+              <div className="h-12 w-12 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white font-bold text-xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-md">
+                MJ
+              </div>
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
             </div>
             <div className="hidden sm:block">
               <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
-                Digital Media Translation
+                Mohammad Jada
               </h1>
-              <p className="text-sm text-gray-500 dark:text-gray-400 font-medium transition-colors duration-300">ETI462</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 font-medium transition-colors duration-300">Fullstack Developer</p>
             </div>
           </Link>
 
@@ -61,10 +58,10 @@ const Navbar = () => {
             </Link>
             
             <Link
-              to="/article"
+              to="/contact"
               className="relative px-4 py-2 text-gray-700 dark:text-gray-300 font-medium transition-all duration-300 hover:text-blue-600 dark:hover:text-blue-400 group"
             >
-              <span className="relative z-10">Article</span>
+              <span className="relative z-10">Contact</span>
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
               <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></div>
             </Link>
@@ -122,11 +119,11 @@ const Navbar = () => {
               🏠 Home
             </Link>
             <Link
-              to="/article"
+              to="/contact"
               onClick={() => setIsMenuOpen(false)}
               className="block px-4 py-3 text-gray-700 dark:text-gray-300 font-medium hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
             >
-              📄 Article
+              📞 Contact
             </Link>
             <Link
               to="/about"

@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import StayOnTop from './components/StayOnTop';
 import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
-import Article from './pages/Article';
+import Contact from './pages/Contact';
 import About from './pages/About';
 import Footer from './components/Footer';
 
@@ -18,7 +18,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/article" element={<Article />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
           </Routes>
           <Footer />

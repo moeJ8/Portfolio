@@ -1,29 +1,29 @@
-import dmtLogo from '../assets/dmt-logo.jpg';
-
 const Footer = () => {
   return (
-    <footer className="bg-white dark:bg-gray-900 shadow-lg mt-16 transition-colors duration-300">
-      <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-        <div className="sm:flex sm:items-center sm:justify-between">
-          <div className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-            <img src={dmtLogo} className="h-8 w-8 rounded object-cover shadow-sm" alt="DMT Logo" />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap text-gray-900 dark:text-white transition-colors duration-300">
-              Digital Media Translation
-            </span>
+    <footer className="bg-gray-900 text-white py-12">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          {/* Logo and Brand */}
+          <div className="flex items-center space-x-3 mb-6 md:mb-0">
+            <div className="h-8 w-8 rounded bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white font-bold text-sm">
+              MJ
+            </div>
+            <span className="text-xl font-semibold">Mohammad Jada</span>
           </div>
-          <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mb-0 transition-colors duration-300">
-            <li>
-              <span className="hover:underline me-4 md:me-6">ETI462</span>
-            </li>
-            <li>
-              <span className="hover:underline">© 2025 DMT</span>
-            </li>
-          </ul>
+          
+          {/* Navigation Links */}
+          <div className="flex flex-wrap justify-center md:justify-end space-x-6 mb-6 md:mb-0">
+            <a href="/" className="hover:text-blue-400 transition-colors">Home</a>
+            <a href="/about" className="hover:text-blue-400 transition-colors">About</a>
+            <a href="/contact" className="hover:text-blue-400 transition-colors">Contact</a>
+            <a href="https://github.com/Mohammad-Jada" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">GitHub</a>
+          </div>
         </div>
-        <hr className="my-6 border-gray-200 dark:border-gray-700 sm:mx-auto lg:my-8 transition-colors duration-300" />
-        <span className="block text-sm text-gray-500 dark:text-gray-400 sm:text-center transition-colors duration-300">
-          Created for Digital Media Translation Course - ETI462
-        </span>
+        
+        {/* Copyright */}
+        <div className="text-center pt-6 border-t border-gray-700 mt-6">
+          <span className="text-gray-400">© 2025 Mohammad Jada. All rights reserved.</span>
+        </div>
       </div>
     </footer>
   );
