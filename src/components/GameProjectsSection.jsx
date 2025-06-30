@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import CustomButton from './CustomButton';
 import DownloadModal from './DownloadModal';
+import ProjectCard from './ProjectCard';
+import { IoGameController } from 'react-icons/io5';
+import { SiItchdotio } from 'react-icons/si';
 
 const GameProjectsSection = () => {
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
@@ -16,16 +19,22 @@ const GameProjectsSection = () => {
       id: 'roller-bowler',
       title: 'Roller Bowler',
       description: 'A 3D rolling ball platformer combining physics-based movement with creative level design. Features level-based progression, coin collection with persistent tracking, unlockable skins, and dynamic day-night skybox.',
-      technologies: ['Unity', 'C#', '3D Physics', 'Game Design'],
-      platform: 'Windows',
-      filename: 'roller-bawler.zip',
-      gradient: 'from-blue-500 to-purple-600',
       icon: (
-        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
+        <img 
+          src="/roller-bawler-icon.png" 
+          alt="Roller Bowler" 
+          className="w-16 h-16 object-cover rounded-xl"
+        />
       ),
-      variant: 'purpleAnimated',
+      gradients: ['from-transparent', 'to-transparent'],
+      badges: [
+        { text: 'Unity', bgColor: 'bg-slate-100 dark:bg-slate-900/50', textColor: 'text-slate-700 dark:text-slate-300', borderColor: 'border-slate-200 dark:border-slate-700' },
+        { text: 'C#', bgColor: 'bg-purple-100 dark:bg-purple-900/50', textColor: 'text-purple-700 dark:text-purple-300', borderColor: 'border-purple-200 dark:border-purple-700' },
+        { text: '3D Physics', bgColor: 'bg-blue-100 dark:bg-blue-900/50', textColor: 'text-blue-700 dark:text-blue-300', borderColor: 'border-blue-200 dark:border-blue-700' },
+        { text: 'Game Design', bgColor: 'bg-orange-100 dark:bg-orange-900/50', textColor: 'text-orange-700 dark:text-orange-300', borderColor: 'border-orange-200 dark:border-orange-700' }
+      ],
+      footer: 'Platform: Windows',
+      buttonVariant: 'purpleAnimated',
       downloadData: {
         name: "Roller Bowler",
         filename: "roller-bawler.zip",
@@ -39,16 +48,22 @@ const GameProjectsSection = () => {
       id: 'void-strike',
       title: 'Void Strike',
       description: 'A fast-paced 2D space shooter where you pilot a starfighter through waves of enemies and environmental hazards. Features responsive controls, dynamic enemy spawning, power-ups, and optimized object pooling.',
-      technologies: ['Unity', 'C#', '2D Graphics', 'Performance Optimization'],
-      platform: 'Windows',
-      filename: 'void-strike.zip',
-      gradient: 'from-green-500 to-teal-600',
       icon: (
-        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M15 14h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
+        <img 
+          src="/void-strike-icon.png" 
+          alt="Void Strike" 
+          className="w-16 h-16 object-cover rounded-xl"
+        />
       ),
-      variant: 'tealAnimated',
+      gradients: ['from-transparent', 'to-transparent'],
+      badges: [
+        { text: 'Unity', bgColor: 'bg-slate-100 dark:bg-slate-900/50', textColor: 'text-slate-700 dark:text-slate-300', borderColor: 'border-slate-200 dark:border-slate-700' },
+        { text: 'C#', bgColor: 'bg-purple-100 dark:bg-purple-900/50', textColor: 'text-purple-700 dark:text-purple-300', borderColor: 'border-purple-200 dark:border-purple-700' },
+        { text: '2D Graphics', bgColor: 'bg-green-100 dark:bg-green-900/50', textColor: 'text-green-700 dark:text-green-300', borderColor: 'border-green-200 dark:border-green-700' },
+        { text: 'Performance Optimization', bgColor: 'bg-red-100 dark:bg-red-900/50', textColor: 'text-red-700 dark:text-red-300', borderColor: 'border-red-200 dark:border-red-700' }
+      ],
+      footer: 'Platform: Windows',
+      buttonVariant: 'tealAnimated',
       downloadData: {
         name: "Void Strike",
         filename: "void-strike.zip",
@@ -63,85 +78,60 @@ const GameProjectsSection = () => {
   return (
     <div className="mb-16">
       <div className="flex items-center mb-8">
-        <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4">
-          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M15 14h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
+        <div className="w-14 h-14 bg-purple-50 dark:bg-purple-900/20 border-2 border-purple-200 dark:border-purple-700 rounded-xl flex items-center justify-center mr-4 transition-all duration-300 hover:bg-purple-100 dark:hover:bg-purple-900/30 hover:border-purple-300 dark:hover:border-purple-600">
+          <IoGameController className="w-6 h-6 text-purple-600 dark:text-purple-400" />
         </div>
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white transition-colors duration-300">Game Development Portfolio</h2>
+        <div>
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white transition-colors duration-300">Game Development Portfolio</h2>
+          <p className="text-slate-600 dark:text-slate-300 mt-1">Interactive games and entertainment applications</p>
+        </div>
       </div>
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
         {games.map((game) => (
-          <div 
+          <ProjectCard
             key={game.id}
-            className="bg-white/80 dark:bg-slate-900/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 group"
-          >
-            <div className="flex items-start justify-between mb-4">
-              <div className={`w-16 h-16 bg-gradient-to-br ${game.gradient} rounded-xl flex items-center justify-center`}>
-                {game.icon}
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {game.technologies.map((tech) => (
-                  <span 
-                    key={tech}
-                    className="px-3 py-1 bg-gray-100 dark:bg-slate-700/50 text-gray-700 dark:text-slate-300 text-xs font-medium rounded-full border border-gray-200 dark:border-slate-600/50"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-            
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 transition-colors duration-300">
-              {game.title}
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-4 transition-colors duration-300 text-sm leading-relaxed">
-              {game.description}
-            </p>
-            
-            <div className="flex items-center justify-between">
-              <div className="text-sm text-gray-500 dark:text-gray-400">
-                <span>Platform: {game.platform}</span>
-              </div>
-              <CustomButton
-                onClick={() => handleDownloadGame(game.downloadData)}
-                variant={game.variant}
-                size="sm"
-                className="shadow-lg hover:shadow-xl"
-              >
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                Download
-              </CustomButton>
-            </div>
-          </div>
+            title={game.title}
+            description={game.description}
+            icon={game.icon}
+            gradients={game.gradients}
+            badges={game.badges}
+            footer={game.footer}
+            buttonVariant={game.buttonVariant}
+            buttonText="Download"
+            buttonIcon={
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            }
+            onButtonClick={() => handleDownloadGame(game.downloadData)}
+          />
         ))}
       </div>
 
       {/* Itch.io Portfolio Link */}
-      <div className="bg-gradient-to-r from-red-500 to-orange-500 rounded-2xl p-6 shadow-xl">
+      <div className="bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-2xl p-6 shadow-xl transition-all duration-300">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4">
-              <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M3 3v18l3-3h12l3 3V3H3zm15 14H6.83L5 18.83V5h13v12z"/>
-                <path d="M8 7h8v2H8zm0 4h8v2H8zm0 4h5v2H8z"/>
-              </svg>
+            <div className="w-16 h-16 bg-red-50 dark:bg-red-900/20 border-2 border-red-200 dark:border-red-700 rounded-xl flex items-center justify-center mr-4 transition-all duration-300 hover:bg-red-100 dark:hover:bg-red-900/30 hover:border-red-300 dark:hover:border-red-600">
+              <SiItchdotio className="w-6 h-6 text-red-600 dark:text-red-400" />
             </div>
             <div>
-              <h3 className="text-xl font-bold text-white mb-1">More Games on Itch.io</h3>
-              <p className="text-white/80">Explore my complete game portfolio</p>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1 transition-colors duration-300">More Games on Itch.io</h3>
+              <p className="text-slate-600 dark:text-slate-300 transition-colors duration-300">Explore my complete game portfolio</p>
             </div>
           </div>
-          <a href="https://moe2.itch.io" target="_blank" rel="noopener noreferrer" 
-             className="bg-white/20 hover:bg-white/30 text-white px-6 py-3 rounded-xl transition-all duration-300 flex items-center hover:scale-105">
-            <span className="mr-2">Visit Portfolio</span>
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <CustomButton
+            onClick={() => window.open('https://moe2.itch.io', '_blank')}
+            variant="redAnimated"
+            size="lg"
+            className="shadow-lg hover:shadow-xl"
+          >
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>
-          </a>
+            Visit Portfolio
+          </CustomButton>
         </div>
       </div>
 

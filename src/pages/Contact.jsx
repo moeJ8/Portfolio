@@ -59,7 +59,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-300">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-slate-950 dark:via-slate-950 dark:to-slate-950 transition-colors duration-300">
       <div className="max-w-4xl mx-auto px-4 py-16">
         {/* Contact Header */}
         <div className="text-center mb-12">
@@ -148,7 +148,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-white/80 dark:bg-slate-900/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-2xl p-8 shadow-xl transition-colors duration-300">
+          <div className="bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-2xl p-8 shadow-xl transition-all duration-300">
             <h2 className="text-2xl font-semibold text-slate-900 dark:text-white mb-6 transition-colors duration-300">
               Send Me a Message
             </h2>

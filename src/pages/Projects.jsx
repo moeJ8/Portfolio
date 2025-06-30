@@ -10,7 +10,7 @@ const Projects = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-300">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-slate-950 dark:via-slate-950 dark:to-slate-950 transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-4 py-16">
         <AboutHeader />
         <ProfessionalOverview />
@@ -20,13 +20,13 @@ const Projects = () => {
         
         {/* Call to Action Section */}
         <div className="mt-20 text-center">
-          <div className="bg-white/80 dark:bg-slate-900/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-2xl p-12 shadow-xl">
+          <div className="bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-2xl p-12 shadow-xl">
             <div className="max-w-2xl mx-auto">
               <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4 transition-colors duration-300">
-                Interested in Working Together?
+                Connect With Me
               </h2>
               <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 leading-relaxed transition-colors duration-300">
-                Ready to build something amazing? Let's talk about your next project.
+                Feel free to reach out and say hello! I'm always up for a good conversation.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -54,12 +54,7 @@ const Projects = () => {
                   View LinkedIn
                 </CustomButton>
               </div>
-              
-              {/* Professional Badge */}
-              <div className="mt-8 inline-flex items-center bg-emerald-100 dark:bg-emerald-600/20 backdrop-blur-sm border border-emerald-300 dark:border-emerald-500/30 rounded-full px-4 py-2">
-                <div className="w-3 h-3 bg-emerald-500 dark:bg-emerald-400 rounded-full mr-2 animate-pulse"></div>
-                <span className="text-sm font-medium text-emerald-700 dark:text-emerald-200">Available for New Projects</span>
-              </div>
+
             </div>
           </div>
         </div>

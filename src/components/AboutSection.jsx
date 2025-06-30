@@ -1,6 +1,6 @@
 const AboutSection = () => {
   return (
-    <section className="py-16 bg-white dark:bg-gray-800 transition-colors duration-300">
+    <section className="py-16 bg-gray-50 dark:bg-slate-950 transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-4 text-center">
         <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6 transition-colors duration-300">About Me</h2>
         <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed transition-colors duration-300">

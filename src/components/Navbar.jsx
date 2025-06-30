@@ -27,7 +27,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-700/50 shadow-lg sticky top-0 z-50 transition-colors duration-300">
+    <nav className="bg-white/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-700/50 shadow-lg sticky top-0 z-50 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo Section */}
@@ -110,7 +110,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation Menu */}
         <div className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
-          <div className="px-2 pt-2 pb-6 space-y-1 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md rounded-lg mt-2 shadow-lg border border-gray-200/50 dark:border-gray-700/50 transition-colors duration-300">
+          <div className="px-2 pt-2 pb-6 space-y-1 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md rounded-lg mt-2 shadow-lg border border-gray-200/50 dark:border-gray-700/50 transition-colors duration-300">
             <Link
               to="/"
               onClick={() => setIsMenuOpen(false)}

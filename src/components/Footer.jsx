@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-12">
+    <footer className="bg-slate-950 text-white py-12">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Logo and Brand */}
@@ -21,8 +21,8 @@ const Footer = () => {
         </div>
         
         {/* Copyright */}
-        <div className="text-center pt-6 border-t border-gray-700 mt-6">
-          <span className="text-gray-400">© 2025 Mohammad Jada. All rights reserved.</span>
+        <div className="text-center pt-6 border-t border-slate-700 mt-6">
+          <span className="text-slate-400">© 2025 Mohammad Jada. All rights reserved.</span>
         </div>
       </div>
     </footer>

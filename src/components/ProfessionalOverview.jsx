@@ -4,10 +4,10 @@ const ProfessionalOverview = () => {
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-50/50 to-white/50 dark:from-slate-900/20 dark:to-slate-800/20 rounded-3xl"></div>
       
-      <div className="relative bg-white/80 dark:bg-slate-900/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-3xl shadow-xl p-8 mb-16 transition-all duration-300">
+      <div className="relative bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-3xl shadow-xl p-8 mb-16 transition-all duration-300">
         <div className="flex items-center mb-8">
-          <div className="w-14 h-14 bg-gradient-to-br from-slate-600 to-slate-800 dark:from-slate-400 dark:to-slate-600 rounded-2xl flex items-center justify-center mr-4 shadow-lg">
-            <svg className="w-7 h-7 text-white dark:text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="w-16 h-16 bg-slate-50 dark:bg-slate-900/20 border-2 border-slate-200 dark:border-slate-700 rounded-xl flex items-center justify-center mr-4 transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-900/30 hover:border-slate-300 dark:hover:border-slate-600">
+            <svg className="w-7 h-7 text-slate-600 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>
           </div>
@@ -29,7 +29,7 @@ const ProfessionalOverview = () => {
             </p>
           </div>
           
-          <div className="bg-gradient-to-br from-slate-50/80 to-slate-100/50 dark:from-slate-800/50 dark:to-slate-700/30 backdrop-blur-sm border border-slate-200/50 dark:border-slate-600/30 rounded-2xl p-6 transition-colors duration-300">
+          <div className="bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-2xl p-6 transition-all duration-300">
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-6 transition-colors duration-300 flex items-center">
               <svg className="w-5 h-5 mr-2 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -45,7 +45,7 @@ const ProfessionalOverview = () => {
                 { skill: "Unity & C#", color: "bg-purple-600", description: "Game development" },
                 { skill: "JavaScript", color: "bg-yellow-500", description: "Programming language" }
               ].map((item, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-white/50 dark:bg-slate-800/30 rounded-lg border border-slate-200/30 dark:border-slate-600/20">
+                <div key={index} className="flex items-center justify-between p-3 bg-white/80 dark:bg-slate-950/50 rounded-lg border border-slate-200/50 dark:border-slate-600/40">
                   <div className="flex items-center">
                     <span className={`w-3 h-3 ${item.color} rounded-full mr-3 shadow-sm`}></span>
                     <span className="font-medium text-slate-800 dark:text-slate-200">{item.skill}</span>

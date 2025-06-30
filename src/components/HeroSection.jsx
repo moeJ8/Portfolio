@@ -52,8 +52,6 @@ const HeroSection = () => {
       subtitle: 'Fullstack Developer & Unity Game Designer',
       description: 'I create scalable web applications using the MERN stack and engaging interactive experiences with Unity. Specialized in building modern, user-centric digital solutions that bridge technology and creativity.',
       skills: ['React', 'Node.js', 'MongoDB', 'JavaScript', 'Unity', 'C#', 'Next.js'],
-      backgroundImage: '/roller-bawler-bg.png',
-      iconImage: '/roller-bawler-icon.png',
       buttons: [
         { text: 'Let\'s Talk', variant: 'tealAnimated', action: () => navigate('/contact'), icon: 'chat' },
         { text: 'Download CV', variant: 'purpleAnimated', action: handleDownloadCV, icon: 'download' },
@@ -402,7 +400,7 @@ const HeroSection = () => {
           <div className="flex-1 max-w-xl lg:max-w-2xl">
             <div className="relative">
               {/* Project Card */}
-              <div className="relative z-10 bg-gradient-to-br from-white/80 to-gray-50/90 dark:from-slate-900/50 dark:to-slate-800/30 backdrop-blur-lg border border-gray-300/50 dark:border-slate-600/40 rounded-2xl p-8 shadow-2xl">
+              <div className="relative z-10 bg-white/5 dark:bg-slate-950/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-2xl p-8 shadow-2xl">
                 {/* Project Icon */}
                 <div className="w-56 h-56 lg:w-64 lg:h-64 mx-auto mb-6 relative">
                   {slide.id === 'roller-bowler' && slide.iconImage ? (
@@ -498,8 +496,9 @@ const HeroSection = () => {
                   </>
                 ) : (
                   <>
+                    <div className="absolute inset-0 bg-white dark:bg-slate-950" />
                     <div className="absolute inset-0 bg-grid-gray-900/5 dark:bg-grid-white/5 bg-grid-16" />
-                    <div className="absolute inset-0 bg-gradient-to-br from-gray-200/10 dark:from-slate-800/10 via-transparent to-gray-300/10 dark:to-slate-700/10" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-gray-200/10 dark:from-slate-950/10 via-transparent to-gray-300/10 dark:to-slate-950/10" />
                   </>
                 )}
                 
