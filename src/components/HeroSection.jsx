@@ -1,7 +1,19 @@
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import CustomButton from './CustomButton';
+import DownloadModal from './DownloadModal';
 
 const HeroSection = () => {
   const navigate = useNavigate();
+  const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState(0);
+  const [dragOffset, setDragOffset] = useState(0);
+  const carouselRef = useRef(null);
+  const autoPlayRef = useRef(null);
 
   const handleSocialMediaClick = () => {
     const socialMediaSection = document.getElementById('social-media');
@@ -10,51 +22,563 @@ const HeroSection = () => {
     }
   };
 
-  return (
-    <section className="bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 text-white">
-      <div className="max-w-screen-xl mx-auto px-4 py-20 lg:py-32">
-        <div className="text-center">
-          {/* Profile Avatar Placeholder */}
-          <div className="mb-8">
-            <div className="mx-auto h-40 w-40 rounded-2xl bg-gradient-to-br from-white/20 to-white/10 border-4 border-white/20 hover:scale-105 transition-transform duration-300 cursor-pointer flex items-center justify-center shadow-2xl">
-              <div className="text-6xl font-bold text-white">MJ</div>
+  const handleDownloadCV = () => {
+    const cvFile = {
+      name: "Mohammad Jada - CV",
+      filename: "Mohammad_Jada_CV.pdf",
+      size: "2.4 MB",
+      type: "PDF Document",
+      url: "/Mohammad_Jada_CV.pdf",
+      description: "Professional CV showcasing experience in fullstack development with MERN stack, Unity game development, and project portfolio including Glim.blog and Rahalatek."
+    };
+    setSelectedFile(cvFile);
+    setIsDownloadModalOpen(true);
+  };
+
+  const handleDownloadGame = (gameFileName, gameDetails) => {
+    setSelectedFile({
+      ...gameDetails,
+      filename: gameFileName,
+      url: `/games/${gameFileName}`
+    });
+    setIsDownloadModalOpen(true);
+  };
+
+  const slides = [
+    {
+      id: 'hero',
+      type: 'hero',
+      title: 'Mohammad Jada',
+      subtitle: 'Fullstack Developer & Unity Game Designer',
+      description: 'I create scalable web applications using the MERN stack and engaging interactive experiences with Unity. Specialized in building modern, user-centric digital solutions that bridge technology and creativity.',
+      skills: ['React', 'Node.js', 'MongoDB', 'JavaScript', 'Unity', 'C#', 'Next.js'],
+      backgroundImage: '/roller-bawler-bg.png',
+      iconImage: '/roller-bawler-icon.png',
+      buttons: [
+        { text: 'Let\'s Talk', variant: 'tealAnimated', action: () => navigate('/contact'), icon: 'chat' },
+        { text: 'Download CV', variant: 'purpleAnimated', action: handleDownloadCV, icon: 'download' },
+        { text: 'Connect', variant: 'blueAnimated', action: handleSocialMediaClick, icon: 'connect' }
+      ]
+    },
+    {
+      id: 'roller-bowler',
+      type: 'project',
+      title: 'Roller Bowler',
+      subtitle: '3D Unity Platformer Game',
+      description: 'A 3D rolling ball platformer combining physics-based movement with creative level design. Features level-based progression, coin collection with persistent tracking, unlockable skins, and dynamic day-night skybox.',
+      tech: ['Unity', 'C#', '3D Physics', 'Game Design'],
+      gradient: 'from-blue-500 to-purple-600',
+      backgroundImage: '/roller-bawler-bg.png',
+      iconImage: '/roller-bawler-icon.png',
+      buttons: [
+        { text: 'Download Game', variant: 'purpleAnimated', action: () => handleDownloadGame('roller-bawler.zip', {
+          name: "Roller Bowler",
+          size: "45.2 MB",
+          type: "Windows Game",
+          description: "A 3D platformer game featuring ball physics and challenging levels. Built with Unity and C#."
+        }), icon: 'download' },
+        { text: 'View Projects', variant: 'blueAnimated', action: () => navigate('/projects'), icon: 'view' }
+      ]
+    },
+    {
+      id: 'void-strike',
+      type: 'project',
+      title: 'Void Strike',
+      subtitle: '2D Space Shooter Game',
+      description: 'A fast-paced 2D space shooter where you pilot a starfighter through waves of enemies and environmental hazards. Features responsive controls, dynamic enemy spawning, power-ups, and optimized object pooling.',
+      tech: ['Unity', 'C#', '2D Graphics', 'Performance Optimization'],
+      gradient: 'from-green-500 to-teal-600',
+      buttons: [
+        { text: 'Download Game', variant: 'tealAnimated', action: () => handleDownloadGame('void-strike.zip', {
+          name: "Void Strike",
+          size: "32.8 MB",
+          type: "Windows Game",
+          description: "A 2D space shooter game with intense action and progressive difficulty. Features smooth controls and retro-style graphics."
+        }), icon: 'download' },
+        { text: 'Itch.io Portfolio', variant: 'purpleAnimated', action: () => window.open('https://moe2.itch.io', '_blank'), icon: 'external' }
+      ]
+    },
+    {
+      id: 'glim',
+      type: 'project',
+      title: 'Glim',
+      subtitle: 'Modern Blogging Platform',
+      description: 'A modern blogging platform built with React and advanced CMS features. Showcases responsive design, user authentication, content management, and professional publishing tools for content creators.',
+      tech: ['React', 'Node.js', 'MongoDB', 'Express.js'],
+      gradient: 'from-purple-500 to-pink-600',
+      buttons: [
+        { text: 'Visit Site', variant: 'purpleAnimated', action: () => window.open('https://glim.blog', '_blank'), icon: 'external' },
+        { text: 'View Projects', variant: 'tealAnimated', action: () => navigate('/projects'), icon: 'view' }
+      ]
+    },
+    {
+      id: 'rahalatek',
+      type: 'project',
+      title: 'Rahalatek',
+      subtitle: 'Enterprise Web Application',
+      description: 'Enterprise-level web application with real-time features, advanced state management, and responsive design principles. Built for modern business solutions with scalability and performance in mind.',
+      tech: ['React', 'Express.js', 'Real-time', 'Enterprise Architecture'],
+      gradient: 'from-blue-500 to-teal-600',
+      buttons: [
+        { text: 'Visit Site', variant: 'blueAnimated', action: () => window.open('https://app.Rahalatek.com', '_blank'), icon: 'external' },
+        { text: 'Contact Me', variant: 'tealAnimated', action: () => navigate('/contact'), icon: 'chat' }
+      ]
+    }
+  ];
+
+  // Auto-play functionality
+  useEffect(() => {
+    if (isAutoPlaying && !isDragging) {
+      autoPlayRef.current = setInterval(() => {
+        setCurrentSlide(prev => (prev + 1) % slides.length);
+      }, 10000);
+    } else {
+      clearInterval(autoPlayRef.current);
+    }
+
+    return () => clearInterval(autoPlayRef.current);
+  }, [isAutoPlaying, isDragging, slides.length]);
+
+  // Navigation functions
+  const nextSlide = () => {
+    setCurrentSlide(prev => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide(prev => (prev - 1 + slides.length) % slides.length);
+  };
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+  };
+
+  // Drag functionality
+  const handleMouseDown = (e) => {
+    e.preventDefault();
+    setIsDragging(true);
+    setDragStart(e.clientX);
+    setIsAutoPlaying(false);
+    document.body.style.userSelect = 'none';
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const currentX = e.clientX;
+    const diff = currentX - dragStart;
+    setDragOffset(diff);
+  };
+
+  const handleMouseUp = () => {
+    if (!isDragging) return;
+    
+    const threshold = 100;
+    if (dragOffset > threshold) {
+      prevSlide();
+    } else if (dragOffset < -threshold) {
+      nextSlide();
+    }
+    
+    setIsDragging(false);
+    setDragOffset(0);
+    setIsAutoPlaying(true);
+    document.body.style.userSelect = '';
+  };
+
+  // Touch events for mobile
+  const handleTouchStart = (e) => {
+    e.preventDefault();
+    setIsDragging(true);
+    setDragStart(e.touches[0].clientX);
+    setIsAutoPlaying(false);
+    document.body.style.userSelect = 'none';
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const currentX = e.touches[0].clientX;
+    const diff = currentX - dragStart;
+    setDragOffset(diff);
+  };
+
+  const handleTouchEnd = () => {
+    handleMouseUp();
+  };
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      document.body.style.userSelect = '';
+    };
+  }, []);
+
+  const getIcon = (iconType) => {
+    const icons = {
+      chat: <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+      </svg>,
+      download: <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      </svg>,
+      external: <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+      </svg>,
+      view: <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+      </svg>,
+      connect: null
+    };
+    return icons[iconType];
+  };
+
+  const renderSlide = (slide) => {
+    if (slide.type === 'hero') {
+      return (
+        <div className="flex flex-col lg:flex-row items-center justify-between w-full h-full max-w-7xl mx-auto">
+          {/* Left Content */}
+          <div className="flex-1 text-center lg:text-left mb-12 lg:mb-0">
+            {/* Professional Badge */}
+            <div className="inline-flex items-center bg-emerald-100 dark:bg-emerald-600/20 backdrop-blur-sm border border-emerald-300 dark:border-emerald-500/30 rounded-full px-4 py-2 mb-6">
+              <div className="w-3 h-3 bg-emerald-500 dark:bg-emerald-400 rounded-full mr-2 animate-pulse"></div>
+              <span className="text-sm font-medium text-emerald-700 dark:text-emerald-200">Available for Projects</span>
+            </div>
+
+            {/* Main Heading */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              <span className="text-gray-900 dark:text-white">Hi, I'm</span>
+              <br />
+              <span className="bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800 dark:from-gray-100 dark:via-white dark:to-gray-200 bg-clip-text text-transparent">
+                {slide.title}
+              </span>
+            </h1>
+
+            {/* Professional Title */}
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
+              {slide.subtitle}
+            </h2>
+
+            {/* Description */}
+            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mb-8 leading-relaxed">
+              {slide.description}
+            </p>
+
+            {/* Location */}
+            <div className="flex items-center justify-center lg:justify-start mb-8 text-gray-600 dark:text-gray-400">
+              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span>Istanbul, Turkey</span>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              {slide.buttons.map((button, index) => (
+                <CustomButton
+                  key={index}
+                  onClick={button.action}
+                  variant={button.variant}
+                  size="lg"
+                  className="shadow-xl hover:shadow-2xl"
+                >
+                  {getIcon(button.icon)}
+                  {button.text}
+                </CustomButton>
+              ))}
             </div>
           </div>
-          
-          {/* Main Title */}
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-              Mohammad Jada
-            </span>
-          </h1>
-          
-          {/* Professional Title */}
-          <p className="text-2xl md:text-3xl font-light text-blue-100 mb-4">
-            Fullstack Developer & Unity Game Designer
-          </p>
-          
-          {/* Professional Tagline */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 inline-block mb-8">
-            <p className="text-lg font-medium">Building Digital Experiences That Matter</p>
-          </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={handleSocialMediaClick}
-              className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-colors duration-300"
-            >
-              Connect With Me
-            </button>
-            <button
-              onClick={() => navigate('/about')}
-              className="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold hover:bg-blue-50 transition-colors duration-300"
-            >
-              View My Work
-            </button>
+          {/* Right Content - Professional Image/Visual */}
+          <div className="flex-1 max-w-lg">
+            <div className="relative">
+              {/* Main Profile Area */}
+              <div className="relative z-10 bg-gradient-to-br from-white/80 to-gray-50/90 dark:from-slate-900/50 dark:to-slate-800/30 backdrop-blur-lg border border-gray-300/50 dark:border-slate-600/40 rounded-2xl p-8 shadow-2xl">
+                {/* Profile Image Placeholder */}
+                <div className="w-56 h-56 lg:w-64 lg:h-64 mx-auto mb-6 relative">
+                  <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800 rounded-2xl flex items-center justify-center text-6xl font-bold text-white shadow-2xl border border-gray-600">
+                    MJ
+                  </div>
+                  {/* Status indicator */}
+                  <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-emerald-500 rounded-full border-4 border-white dark:border-slate-900 flex items-center justify-center">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Skills Preview */}
+                <div className="space-y-3">
+                  <h3 className="text-lg font-semibold text-center mb-4 text-gray-800 dark:text-white">Core Technologies</h3>
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {slide.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="px-3 py-1 bg-gray-200 dark:bg-slate-700/50 border border-gray-300 dark:border-slate-600/50 rounded-full text-sm text-gray-700 dark:text-slate-200 backdrop-blur-sm"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating Elements */}
+              <div className="absolute -top-4 -left-4 w-24 h-24 bg-gray-300/30 dark:bg-slate-600/20 rounded-full blur-xl"></div>
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gray-400/30 dark:bg-slate-500/20 rounded-full blur-xl"></div>
+            </div>
           </div>
         </div>
+      );
+    } else {
+      // Project slide
+      return (
+        <div className="flex flex-col lg:flex-row items-center justify-between w-full h-full max-w-7xl mx-auto">
+          {/* Left Content */}
+          <div className={`flex-1 text-center lg:text-left mb-12 lg:mb-0 ${slide.backgroundImage ? 'text-white' : ''}`}>
+            {/* Project Badge */}
+            <div className="inline-flex items-center bg-blue-100 dark:bg-blue-600/20 backdrop-blur-sm border border-blue-300 dark:border-blue-500/30 rounded-full px-4 py-2 mb-6">
+              <div className="w-3 h-3 bg-blue-500 dark:bg-blue-400 rounded-full mr-2 animate-pulse"></div>
+              <span className="text-sm font-medium text-blue-700 dark:text-blue-200">Featured Project</span>
+            </div>
+
+            {/* Project Title */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              <span className={slide.backgroundImage ? 
+                "text-white drop-shadow-lg" : 
+                "bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800 dark:from-gray-100 dark:via-white dark:to-gray-200 bg-clip-text text-transparent"
+              }>
+                {slide.title}
+              </span>
+            </h1>
+
+            {/* Project Type */}
+            <h2 className={slide.backgroundImage ? 
+              "text-xl sm:text-2xl lg:text-3xl font-semibold text-white/90 mb-4 drop-shadow-md" :
+              "text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-700 dark:text-gray-300 mb-4"
+            }>
+              {slide.subtitle}
+            </h2>
+
+            {/* Description */}
+            <p className={slide.backgroundImage ?
+              "text-lg text-white/80 max-w-2xl mb-8 leading-relaxed drop-shadow-sm" :
+              "text-lg text-gray-600 dark:text-gray-400 max-w-2xl mb-8 leading-relaxed"
+            }>
+              {slide.description}
+            </p>
+
+            {/* Tech Stack */}
+            <div className="flex flex-wrap gap-3 justify-center lg:justify-start mb-8">
+              {slide.tech.map((tech) => (
+                <span
+                  key={tech}
+                  className="px-3 py-2 bg-gray-200 dark:bg-slate-700/50 border border-gray-300 dark:border-slate-600/50 rounded-full text-sm font-medium text-gray-700 dark:text-slate-200 backdrop-blur-sm"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              {slide.buttons.map((button, index) => (
+                <CustomButton
+                  key={index}
+                  onClick={button.action}
+                  variant={button.variant}
+                  size="lg"
+                  className="shadow-xl hover:shadow-2xl"
+                >
+                  {getIcon(button.icon)}
+                  {button.text}
+                </CustomButton>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Content - Project Visual */}
+          <div className="flex-1 max-w-xl lg:max-w-2xl">
+            <div className="relative">
+              {/* Project Card */}
+              <div className="relative z-10 bg-gradient-to-br from-white/80 to-gray-50/90 dark:from-slate-900/50 dark:to-slate-800/30 backdrop-blur-lg border border-gray-300/50 dark:border-slate-600/40 rounded-2xl p-8 shadow-2xl">
+                {/* Project Icon */}
+                <div className="w-56 h-56 lg:w-64 lg:h-64 mx-auto mb-6 relative">
+                  {slide.id === 'roller-bowler' && slide.iconImage ? (
+                    <div className="w-full h-full bg-transparent rounded-2xl flex items-center justify-center shadow-2xl overflow-hidden">
+                      <img 
+                        src={slide.iconImage} 
+                        alt="Roller Bowler Icon"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div className={`w-full h-full bg-gradient-to-br ${slide.gradient} rounded-2xl flex items-center justify-center text-6xl font-bold text-white shadow-2xl border`}>
+                      {slide.id === 'void-strike' && (
+                        <svg className="w-24 h-24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M15 14h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      )}
+                      {slide.id === 'glim' && (
+                        <svg className="w-24 h-24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                        </svg>
+                      )}
+                      {slide.id === 'rahalatek' && (
+                        <svg className="w-24 h-24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* Project Info */}
+                <div className="space-y-3">
+                  <h3 className="text-lg font-semibold text-center mb-4 text-gray-800 dark:text-white">{slide.title}</h3>
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {slide.tech.slice(0, 4).map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-3 py-1 bg-gray-200 dark:bg-slate-700/50 border border-gray-300 dark:border-slate-600/50 rounded-full text-sm text-gray-700 dark:text-slate-200 backdrop-blur-sm"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating Elements */}
+              <div className="absolute -top-4 -left-4 w-24 h-24 bg-gray-300/30 dark:bg-slate-600/20 rounded-full blur-xl"></div>
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gray-400/30 dark:bg-slate-500/20 rounded-full blur-xl"></div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  };
+
+  return (
+    <section className="relative w-full h-[calc(100vh-5rem)] bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-gray-900 dark:text-white overflow-hidden transition-colors duration-300">
+      {/* Carousel Container - Full Width */}
+      <div className="relative w-full h-full">
+        <div 
+          ref={carouselRef}
+          className="relative overflow-hidden cursor-grab active:cursor-grabbing h-full flex items-center select-none"
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          style={{ touchAction: 'pan-y' }}
+        >
+          <div 
+            className="flex transition-transform duration-500 ease-in-out w-full h-full"
+            style={{ 
+              transform: `translateX(${-currentSlide * 100 + (dragOffset / window.innerWidth) * 100}%)` 
+            }}
+          >
+            {slides.map((slide) => (
+              <div key={slide.id} className="w-full h-full flex-shrink-0 flex items-center relative">
+                {/* Individual Slide Background */}
+                {slide.backgroundImage ? (
+                  <>
+                    <div className="absolute inset-0">
+                      <img 
+                        src={slide.backgroundImage} 
+                        alt={`${slide.title} Background`}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-black/40"></div>
+                  </>
+                ) : (
+                  <>
+                    <div className="absolute inset-0 bg-grid-gray-900/5 dark:bg-grid-white/5 bg-grid-16" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-gray-200/10 dark:from-slate-800/10 via-transparent to-gray-300/10 dark:to-slate-700/10" />
+                  </>
+                )}
+                
+                {/* Slide Content */}
+                <div className="relative z-10 w-full h-full flex items-center">
+                  {renderSlide(slide)}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Navigation Arrows */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-16 sm:left-20 lg:left-24 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border border-gray-300 dark:border-slate-600 rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 z-20"
+        >
+          <svg className="w-6 h-6 text-gray-700 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <button
+          onClick={nextSlide}
+          className="absolute right-16 sm:right-20 lg:right-24 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border border-gray-300 dark:border-slate-600 rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 z-20"
+        >
+          <svg className="w-6 h-6 text-gray-700 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        {/* Slide Indicators */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentSlide
+                  ? 'bg-gray-800 dark:bg-white scale-125'
+                  : 'bg-gray-400 dark:bg-gray-600 hover:bg-gray-600 dark:hover:bg-gray-400'
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* Auto-play Control */}
+        <button
+          onClick={() => setIsAutoPlaying(!isAutoPlaying)}
+          className="absolute bottom-8 right-16 sm:right-20 lg:right-24 w-10 h-10 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border border-gray-300 dark:border-slate-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 z-20"
+        >
+          {isAutoPlaying ? (
+            <svg className="w-5 h-5 text-gray-700 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          ) : (
+            <svg className="w-5 h-5 text-gray-700 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M15 14h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          )}
+        </button>
+
+        {/* Scroll Indicator - only show on hero slide */}
+        {currentSlide === 0 && (
+          <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 text-center z-20">
+            <div className="text-gray-600 dark:text-gray-400 text-sm mb-2">Scroll to explore</div>
+            <div className="w-6 h-10 border-2 border-gray-600 dark:border-gray-400 rounded-full mx-auto relative">
+              <div className="w-1 h-3 bg-gray-600 dark:bg-gray-400 rounded-full absolute top-2 left-1/2 transform -translate-x-1/2 animate-bounce"></div>
+            </div>
+          </div>
+        )}
       </div>
+
+      {/* Download Modal */}
+      <DownloadModal
+        isOpen={isDownloadModalOpen}
+        onClose={() => setIsDownloadModalOpen(false)}
+        file={selectedFile}
+      />
     </section>
   );
 };
