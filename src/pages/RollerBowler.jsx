@@ -11,14 +11,14 @@ const RollerBowler = () => {
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
 
   const gameData = {
-    title: "Roller Bowler",
+    title: "Roller Bawler",
     subtitle: "3D Unity Platformer Game",
     description: "A 3D rolling ball platformer combining physics-based movement with creative level design. Features level-based progression, coin collection with persistent tracking, unlockable skins, and dynamic day-night skybox.",
     technologies: ["Unity", "C#", "3D Physics", "Game Design"],
     backgroundImage: "/roller-bawler-bg.png",
     iconImage: "/roller-bawler-icon.png",
     overview: [
-      "Roller Bowler is an engaging 3D platformer where you control a rolling ball through challenging levels filled with obstacles, collectibles, and physics-based puzzles.",
+      "Roller Bawler is an engaging 3D platformer where you control a rolling ball through challenging levels filled with obstacles, collectibles, and physics-based puzzles.",
       "The game features smooth physics-based movement mechanics that make controlling the ball feel natural and responsive. Each level presents unique challenges that test your precision and timing.",
       "Progress through increasingly difficult levels while collecting coins that unlock new ball skins and customization options."
     ],
@@ -33,7 +33,7 @@ const RollerBowler = () => {
       "Optimized performance for smooth gameplay"
     ],
     file: {
-      name: "Roller Bowler",
+      name: "Roller Bawler",
       filename: "roller-bawler.zip",
       size: "45.2 MB",
       type: "Windows Game",
@@ -43,7 +43,7 @@ const RollerBowler = () => {
     instructions: [
       "Download the game file from the button below",
       "Extract the ZIP file to your desired location",
-      "Run 'Roller Bowler.exe' to start the game",
+              "Run 'Roller Bawler.exe' to start the game",
       "Use WASD or arrow keys to control the ball and enjoy!"
     ]
   };

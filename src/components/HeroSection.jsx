@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import CustomButton from './CustomButton';
 import DownloadModal from './DownloadModal';
+import Badge from './Badge';
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -54,7 +55,7 @@ const HeroSection = () => {
     {
       id: 'roller-bowler',
       type: 'project',
-      title: 'Roller Bowler',
+      title: 'Roller Bawler',
       subtitle: '3D Unity Platformer Game',
       description: 'A 3D rolling ball platformer combining physics-based movement with creative level design. Features level-based progression, coin collection with persistent tracking, unlockable skins, and dynamic day-night skybox.',
       tech: ['Unity', 'C#', '3D Physics', 'Game Design'],
@@ -196,6 +197,25 @@ const HeroSection = () => {
     };
   }, []);
 
+  const getTechBadgeColors = (tech) => {
+    const colorMap = {
+      'Unity': { bgColor: 'bg-slate-100 dark:bg-slate-900/50', textColor: 'text-slate-700 dark:text-slate-300', borderColor: 'border-slate-200 dark:border-slate-700' },
+      'C#': { bgColor: 'bg-purple-100 dark:bg-purple-900/50', textColor: 'text-purple-700 dark:text-purple-300', borderColor: 'border-purple-200 dark:border-purple-700' },
+      '3D Physics': { bgColor: 'bg-blue-100 dark:bg-blue-900/50', textColor: 'text-blue-700 dark:text-blue-300', borderColor: 'border-blue-200 dark:border-blue-700' },
+      '2D Graphics': { bgColor: 'bg-green-100 dark:bg-green-900/50', textColor: 'text-green-700 dark:text-green-300', borderColor: 'border-green-200 dark:border-green-700' },
+      'Game Design': { bgColor: 'bg-orange-100 dark:bg-orange-900/50', textColor: 'text-orange-700 dark:text-orange-300', borderColor: 'border-orange-200 dark:border-orange-700' },
+      'React': { bgColor: 'bg-blue-100 dark:bg-blue-900/50', textColor: 'text-blue-700 dark:text-blue-300', borderColor: 'border-blue-200 dark:border-blue-700' },
+      'Node.js': { bgColor: 'bg-green-100 dark:bg-green-900/50', textColor: 'text-green-700 dark:text-green-300', borderColor: 'border-green-200 dark:border-green-700' },
+      'MongoDB': { bgColor: 'bg-green-100 dark:bg-green-900/50', textColor: 'text-green-700 dark:text-green-300', borderColor: 'border-green-200 dark:border-green-700' },
+      'Express.js': { bgColor: 'bg-gray-100 dark:bg-gray-900/50', textColor: 'text-gray-700 dark:text-gray-300', borderColor: 'border-gray-200 dark:border-gray-700' },
+      'JavaScript': { bgColor: 'bg-yellow-100 dark:bg-yellow-900/50', textColor: 'text-yellow-700 dark:text-yellow-300', borderColor: 'border-yellow-200 dark:border-yellow-700' },
+      'Next.js': { bgColor: 'bg-slate-100 dark:bg-slate-900/50', textColor: 'text-slate-700 dark:text-slate-300', borderColor: 'border-slate-200 dark:border-slate-700' },
+      'Real-time': { bgColor: 'bg-teal-100 dark:bg-teal-900/50', textColor: 'text-teal-700 dark:text-teal-300', borderColor: 'border-teal-200 dark:border-teal-700' },
+      'Enterprise Architecture': { bgColor: 'bg-indigo-100 dark:bg-indigo-900/50', textColor: 'text-indigo-700 dark:text-indigo-300', borderColor: 'border-indigo-200 dark:border-indigo-700' }
+    };
+    return colorMap[tech] || { bgColor: 'bg-gray-100 dark:bg-gray-900/50', textColor: 'text-gray-700 dark:text-gray-300', borderColor: 'border-gray-200 dark:border-gray-700' };
+  };
+
   const getIcon = (iconType) => {
     const icons = {
       chat: <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -222,11 +242,7 @@ const HeroSection = () => {
         <div className="flex flex-col lg:flex-row items-center justify-between w-full h-full max-w-7xl mx-auto">
           {/* Left Content */}
           <div className="flex-1 text-center lg:text-left mb-12 lg:mb-0">
-            {/* Professional Badge */}
-            <div className="inline-flex items-center bg-emerald-100 dark:bg-emerald-600/20 backdrop-blur-sm border border-emerald-300 dark:border-emerald-500/30 rounded-full px-4 py-2 mb-6">
-              <div className="w-3 h-3 bg-emerald-500 dark:bg-emerald-400 rounded-full mr-2 animate-pulse"></div>
-              <span className="text-sm font-medium text-emerald-700 dark:text-emerald-200">Available for Projects</span>
-            </div>
+
 
             {/* Main Heading */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
@@ -295,14 +311,20 @@ const HeroSection = () => {
                 <div className="space-y-3">
                   <h3 className="text-lg font-semibold text-center mb-4 text-gray-800 dark:text-white">Core Technologies</h3>
                   <div className="flex flex-wrap gap-2 justify-center">
-                    {slide.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="px-3 py-1 bg-gray-200 dark:bg-slate-700/50 border border-gray-300 dark:border-slate-600/50 rounded-full text-sm text-gray-700 dark:text-slate-200 backdrop-blur-sm"
-                      >
-                        {skill}
-                      </span>
-                    ))}
+                    {slide.skills.map((skill) => {
+                      const colors = getTechBadgeColors(skill);
+                      return (
+                        <Badge
+                          key={skill}
+                          text={skill}
+                          bgColor={colors.bgColor}
+                          textColor={colors.textColor}
+                          borderColor={colors.borderColor}
+                          size="sm"
+                          className="backdrop-blur-sm"
+                        />
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -319,16 +341,12 @@ const HeroSection = () => {
       return (
         <div className="flex flex-col lg:flex-row items-center justify-between w-full h-full max-w-7xl mx-auto">
           {/* Left Content */}
-          <div className={`flex-1 text-center lg:text-left mb-12 lg:mb-0 ${slide.backgroundImage ? 'text-white' : ''}`}>
-            {/* Project Badge */}
-            <div className="inline-flex items-center bg-blue-100 dark:bg-blue-600/20 backdrop-blur-sm border border-blue-300 dark:border-blue-500/30 rounded-full px-4 py-2 mb-6">
-              <div className="w-3 h-3 bg-blue-500 dark:bg-blue-400 rounded-full mr-2 animate-pulse"></div>
-              <span className="text-sm font-medium text-blue-700 dark:text-blue-200">Featured Project</span>
-            </div>
+          <div className={`flex-1 text-center lg:text-left mb-12 lg:mb-0 ${slide.backgroundImage || slide.backgroundVideo ? 'text-white' : ''}`}>
+
 
             {/* Project Title */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              <span className={slide.backgroundImage ? 
+              <span className={slide.backgroundImage || slide.backgroundVideo ? 
                 "text-white drop-shadow-lg" : 
                 "bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800 dark:from-gray-100 dark:via-white dark:to-gray-200 bg-clip-text text-transparent"
               }>
@@ -337,7 +355,7 @@ const HeroSection = () => {
             </h1>
 
             {/* Project Type */}
-            <h2 className={slide.backgroundImage ? 
+            <h2 className={slide.backgroundImage || slide.backgroundVideo ? 
               "text-xl sm:text-2xl lg:text-3xl font-semibold text-white/90 mb-4 drop-shadow-md" :
               "text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-700 dark:text-gray-300 mb-4"
             }>
@@ -345,7 +363,7 @@ const HeroSection = () => {
             </h2>
 
             {/* Description */}
-            <p className={slide.backgroundImage ?
+            <p className={slide.backgroundImage || slide.backgroundVideo ?
               "text-lg text-white/80 max-w-2xl mb-8 leading-relaxed drop-shadow-sm" :
               "text-lg text-gray-600 dark:text-gray-400 max-w-2xl mb-8 leading-relaxed"
             }>
@@ -354,14 +372,20 @@ const HeroSection = () => {
 
             {/* Tech Stack */}
             <div className="flex flex-wrap gap-3 justify-center lg:justify-start mb-8">
-              {slide.tech.map((tech) => (
-                <span
-                  key={tech}
-                  className="px-3 py-2 bg-gray-200 dark:bg-slate-700/50 border border-gray-300 dark:border-slate-600/50 rounded-full text-sm font-medium text-gray-700 dark:text-slate-200 backdrop-blur-sm"
-                >
-                  {tech}
-                </span>
-              ))}
+              {slide.tech.map((tech) => {
+                const colors = getTechBadgeColors(tech);
+                return (
+                  <Badge
+                    key={tech}
+                    text={tech}
+                    bgColor={colors.bgColor}
+                    textColor={colors.textColor}
+                    borderColor={colors.borderColor}
+                    size="md"
+                    className="backdrop-blur-sm"
+                  />
+                );
+              })}
             </div>
 
             {/* CTA Buttons */}
@@ -382,10 +406,10 @@ const HeroSection = () => {
           </div>
 
           {/* Right Content - Project Visual */}
-          <div className="flex-1 max-w-xl lg:max-w-2xl">
+          <div className="flex-1 max-w-lg">
             <div className="relative">
               {/* Project Card */}
-              <div className="relative z-10 bg-white/5 dark:bg-slate-950/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-2xl p-8 shadow-2xl">
+              <div className={`relative z-10 bg-white/5 dark:bg-slate-950/50 backdrop-blur-lg rounded-2xl p-8 shadow-2xl ${slide.backgroundImage || slide.backgroundVideo ? '' : 'border border-slate-200/50 dark:border-slate-600/40'}`}>
                 {/* Project Icon */}
                 <div className="w-56 h-56 lg:w-64 lg:h-64 mx-auto mb-6 relative">
                   {slide.iconImage ? (
@@ -396,35 +420,34 @@ const HeroSection = () => {
                         className="w-full h-full object-cover"
                       />
                     </div>
+                  ) : slide.id === 'glim' ? (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <span className="text-slate-900 dark:text-white
+                        transition-all duration-300
+                        text-4xl lg:text-5xl
+                        font-sans font-extrabold
+                        tracking-tight
+                        drop-shadow-[0_1px_1px_rgba(0,0,0,0.3)]">
+                        Glim
+                      </span>
+                    </div>
+                  ) : slide.id === 'rahalatek' ? (
+                    <img 
+                      src="/rahalatek-logo.png" 
+                      alt="Rahalatek" 
+                      className="w-full h-full object-contain"
+                    />
                   ) : (
                     <div className={`w-full h-full bg-gradient-to-br ${slide.gradient} rounded-2xl flex items-center justify-center text-6xl font-bold text-white shadow-2xl border`}>
-                      {slide.id === 'glim' && (
-                        <svg className="w-24 h-24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                        </svg>
-                      )}
-                      {slide.id === 'rahalatek' && (
-                        <svg className="w-24 h-24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                        </svg>
-                      )}
                     </div>
                   )}
                 </div>
 
                 {/* Project Info */}
                 <div className="space-y-3">
-                  <h3 className="text-lg font-semibold text-center mb-4 text-gray-800 dark:text-white">{slide.title}</h3>
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {slide.tech.slice(0, 4).map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 bg-gray-200 dark:bg-slate-700/50 border border-gray-300 dark:border-slate-600/50 rounded-full text-sm text-gray-700 dark:text-slate-200 backdrop-blur-sm"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                  {slide.id !== 'glim' && slide.id !== 'rahalatek' && (
+                    <h3 className={`text-lg font-semibold text-center mb-4 ${slide.backgroundImage || slide.backgroundVideo ? 'text-white drop-shadow-md' : 'text-gray-800 dark:text-white'}`}>{slide.title}</h3>
+                  )}
                 </div>
               </div>
 

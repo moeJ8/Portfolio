@@ -1,4 +1,5 @@
 import ProjectCard from './ProjectCard';
+import PlatformIcon from './PlatformIcon';
 import { HiCode } from 'react-icons/hi';
 
 const WebProjectsSection = () => {
@@ -6,8 +7,10 @@ const WebProjectsSection = () => {
     <div className="mb-16">
       {/* Section Header */}
       <div className="flex items-center mb-8">
-        <div className="w-14 h-14 bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 dark:border-blue-700 rounded-xl flex items-center justify-center mr-4 transition-all duration-300 hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:border-blue-300 dark:hover:border-blue-600">
-          <HiCode className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+        <div className="mr-4">
+          <PlatformIcon platform="blue" size="section">
+            <HiCode />
+          </PlatformIcon>
         </div>
         <div>
           <h2 className="text-3xl font-bold text-slate-900 dark:text-white transition-colors duration-300">Web Development Projects</h2>
@@ -23,14 +26,16 @@ const WebProjectsSection = () => {
           title="Glim"
           description="A modern blogging platform built with React and advanced CMS features. Showcases responsive design, user authentication, and content management."
           icon={
-            <span className="text-slate-900 dark:text-white
-              transition-all duration-300
-              text-2xl
-              font-sans font-extrabold
-              tracking-tight
-              drop-shadow-[0_1px_1px_rgba(0,0,0,0.3)]">
-              Glim
-            </span>
+            <div className="w-20 h-20 flex items-center justify-center">
+              <span className="text-slate-900 dark:text-white
+                transition-all duration-300
+                text-2xl
+                font-sans font-extrabold
+                tracking-tight
+                drop-shadow-[0_1px_1px_rgba(0,0,0,0.3)]">
+                Glim
+              </span>
+            </div>
           }
           gradients={['from-transparent', 'to-transparent']}
           badges={[

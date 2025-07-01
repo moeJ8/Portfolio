@@ -5,9 +5,6 @@ const ProjectCard = ({
   title,
   description,
   icon,
-  iconGradientFrom,
-  iconGradientTo,
-  gradients,
   badges = [],
   footer,
   buttonText = "Visit",
@@ -16,19 +13,14 @@ const ProjectCard = ({
   onButtonClick,
   className = ""
 }) => {
-  const gradientFrom = iconGradientFrom || (gradients && gradients[0]) || 'from-blue-500';
-  const gradientTo = iconGradientTo || (gradients && gradients[1]) || 'to-purple-600';
-  const hasGradient = gradientFrom && gradientTo && gradientFrom !== '' && gradientTo !== '';
   return (
     <div className={`bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 ${className}`}>
       {/* Card Header */}
       <div className="flex items-start justify-between mb-4">
-        {hasGradient ? (
-          <div className={`w-16 h-16 bg-gradient-to-br ${gradientFrom} ${gradientTo} rounded-xl flex items-center justify-center`}>
+        {icon && (
+          <div className="mr-4">
             {icon}
           </div>
-        ) : (
-          icon
         )}
         <div className="flex flex-wrap gap-2">
           {badges.map((badge, index) => (

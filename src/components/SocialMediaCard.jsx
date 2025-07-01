@@ -3,9 +3,7 @@ import ProjectCard from './ProjectCard';
 const SocialMediaCard = ({ 
   platform, 
   url, 
-  gradientFrom, 
-  gradientTo, 
-  icon, 
+  icon,
   description, 
   hashtags, 
   footer,
@@ -20,8 +18,6 @@ const SocialMediaCard = ({
       title={platform}
       description={description}
       icon={icon}
-      iconGradientFrom={gradientFrom}
-      iconGradientTo={gradientTo}
       badges={hashtags}
       footer={footer}
       buttonText="Visit"

@@ -137,7 +137,7 @@ const GameHero = ({
             {/* Right Content - Game Icon - Desktop */}
             <div className="flex-1 max-w-md">
               <div className="relative">
-                <div className="relative z-10 bg-white/10 dark:bg-slate-950/30 backdrop-blur-lg border border-white/20 dark:border-slate-600/40 rounded-2xl p-8 shadow-2xl">
+                <div className="relative z-10 bg-white/10 dark:bg-slate-950/30 backdrop-blur-lg rounded-2xl p-8 shadow-2xl">
                   <div className="w-56 h-56 lg:w-64 lg:h-64 mx-auto mb-6 relative">
                     {iconImage ? (
                       <img 

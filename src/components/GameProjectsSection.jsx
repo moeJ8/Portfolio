@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import CustomButton from './CustomButton';
 import ProjectCard from './ProjectCard';
 import Badge from './Badge';
+import PlatformIcon from './PlatformIcon';
 import { IoGameController } from 'react-icons/io5';
 import { SiItchdotio } from 'react-icons/si';
 
@@ -11,12 +12,12 @@ const GameProjectsSection = () => {
   const games = [
     {
       id: 'roller-bowler',
-      title: 'Roller Bowler',
+      title: 'Roller Bawler',
       description: 'A 3D rolling ball platformer combining physics-based movement with creative level design. Features level-based progression, coin collection with persistent tracking, unlockable skins, and dynamic day-night skybox.',
       icon: (
         <img 
           src="/roller-bawler-icon.png" 
-          alt="Roller Bowler" 
+          alt="Roller Bawler" 
           className="w-16 h-16 object-cover rounded-xl"
         />
       ),
@@ -54,8 +55,10 @@ const GameProjectsSection = () => {
   return (
     <div className="mb-16">
       <div className="flex items-center mb-8">
-        <div className="w-14 h-14 bg-purple-50 dark:bg-purple-900/20 border-2 border-purple-200 dark:border-purple-700 rounded-xl flex items-center justify-center mr-4 transition-all duration-300 hover:bg-purple-100 dark:hover:bg-purple-900/30 hover:border-purple-300 dark:hover:border-purple-600">
-          <IoGameController className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+        <div className="mr-4">
+          <PlatformIcon platform="purple" size="section">
+            <IoGameController />
+          </PlatformIcon>
         </div>
         <div>
           <h2 className="text-3xl font-bold text-slate-900 dark:text-white transition-colors duration-300">Game Development Portfolio</h2>
@@ -65,7 +68,7 @@ const GameProjectsSection = () => {
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
         {games.map((game) => (
-          <div key={game.id} className="bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+          <div key={game.id} className="bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
             {/* Card Header */}
             <div className="flex items-start justify-between mb-4">
               {game.icon}
@@ -130,11 +133,13 @@ const GameProjectsSection = () => {
       </div>
 
       {/* Itch.io Portfolio Link */}
-      <div className="bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-2xl p-6 shadow-xl transition-all duration-300">
+      <div className="bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg rounded-2xl p-6 shadow-xl transition-all duration-300">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <div className="w-16 h-16 bg-red-50 dark:bg-red-900/20 border-2 border-red-200 dark:border-red-700 rounded-xl flex items-center justify-center mr-4 transition-all duration-300 hover:bg-red-100 dark:hover:bg-red-900/30 hover:border-red-300 dark:hover:border-red-600">
-              <SiItchdotio className="w-6 h-6 text-red-600 dark:text-red-400" />
+            <div className="mr-4">
+              <PlatformIcon platform="itch.io">
+                <SiItchdotio />
+              </PlatformIcon>
             </div>
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1 transition-colors duration-300">View my games in Itch.io</h3>

@@ -1,3 +1,5 @@
+import PlatformIcon from './PlatformIcon';
+
 const ProfessionalOverview = () => {
   return (
     <div className="relative">
@@ -6,10 +8,12 @@ const ProfessionalOverview = () => {
       
       <div className="relative bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-3xl shadow-xl p-8 mb-16 transition-all duration-300">
         <div className="flex items-center mb-8">
-          <div className="w-16 h-16 bg-slate-50 dark:bg-slate-900/20 border-2 border-slate-200 dark:border-slate-700 rounded-xl flex items-center justify-center mr-4 transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-900/30 hover:border-slate-300 dark:hover:border-slate-600">
-            <svg className="w-7 h-7 text-slate-600 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-            </svg>
+          <div className="mr-4">
+            <PlatformIcon platform="slate" size="header">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </PlatformIcon>
           </div>
           <div>
             <h2 className="text-3xl font-bold text-slate-900 dark:text-white transition-colors duration-300">Professional Overview</h2>
