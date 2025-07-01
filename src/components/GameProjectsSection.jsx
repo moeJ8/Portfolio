@@ -1,18 +1,12 @@
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CustomButton from './CustomButton';
-import DownloadModal from './DownloadModal';
 import ProjectCard from './ProjectCard';
+import Badge from './Badge';
 import { IoGameController } from 'react-icons/io5';
 import { SiItchdotio } from 'react-icons/si';
 
 const GameProjectsSection = () => {
-  const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(null);
-
-  const handleDownloadGame = (gameData) => {
-    setSelectedFile(gameData);
-    setIsDownloadModalOpen(true);
-  };
+  const navigate = useNavigate();
 
   const games = [
     {
@@ -33,16 +27,7 @@ const GameProjectsSection = () => {
         { text: '3D Physics', bgColor: 'bg-blue-100 dark:bg-blue-900/50', textColor: 'text-blue-700 dark:text-blue-300', borderColor: 'border-blue-200 dark:border-blue-700' },
         { text: 'Game Design', bgColor: 'bg-orange-100 dark:bg-orange-900/50', textColor: 'text-orange-700 dark:text-orange-300', borderColor: 'border-orange-200 dark:border-orange-700' }
       ],
-      footer: 'Platform: Windows',
-      buttonVariant: 'purpleAnimated',
-      downloadData: {
-        name: "Roller Bowler",
-        filename: "roller-bawler.zip",
-        size: "45.2 MB",
-        type: "Windows Game",
-        url: "/games/roller-bawler.zip",
-        description: "A 3D platformer game featuring ball physics and challenging levels. Built with Unity and C#."
-      }
+      footer: 'Platform: Windows'
     },
     {
       id: 'void-strike',
@@ -60,18 +45,9 @@ const GameProjectsSection = () => {
         { text: 'Unity', bgColor: 'bg-slate-100 dark:bg-slate-900/50', textColor: 'text-slate-700 dark:text-slate-300', borderColor: 'border-slate-200 dark:border-slate-700' },
         { text: 'C#', bgColor: 'bg-purple-100 dark:bg-purple-900/50', textColor: 'text-purple-700 dark:text-purple-300', borderColor: 'border-purple-200 dark:border-purple-700' },
         { text: '2D Graphics', bgColor: 'bg-green-100 dark:bg-green-900/50', textColor: 'text-green-700 dark:text-green-300', borderColor: 'border-green-200 dark:border-green-700' },
-        { text: 'Performance Optimization', bgColor: 'bg-red-100 dark:bg-red-900/50', textColor: 'text-red-700 dark:text-red-300', borderColor: 'border-red-200 dark:border-red-700' }
+        { text: 'Game Design', bgColor: 'bg-orange-100 dark:bg-orange-900/50', textColor: 'text-orange-700 dark:text-orange-300', borderColor: 'border-orange-200 dark:border-orange-700' }
       ],
-      footer: 'Platform: Windows',
-      buttonVariant: 'tealAnimated',
-      downloadData: {
-        name: "Void Strike",
-        filename: "void-strike.zip",
-        size: "32.8 MB",
-        type: "Windows Game",
-        url: "/games/void-strike.zip",
-        description: "A 2D space shooter game with intense action and progressive difficulty. Features smooth controls and retro-style graphics."
-      }
+      footer: 'Platform: Windows'
     }
   ];
 
@@ -89,23 +65,67 @@ const GameProjectsSection = () => {
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
         {games.map((game) => (
-          <ProjectCard
-            key={game.id}
-            title={game.title}
-            description={game.description}
-            icon={game.icon}
-            gradients={game.gradients}
-            badges={game.badges}
-            footer={game.footer}
-            buttonVariant={game.buttonVariant}
-            buttonText="Download"
-            buttonIcon={
-              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-            }
-            onButtonClick={() => handleDownloadGame(game.downloadData)}
-          />
+          <div key={game.id} className="bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+            {/* Card Header */}
+            <div className="flex items-start justify-between mb-4">
+              {game.icon}
+              <div className="flex flex-wrap gap-2">
+                {game.badges.map((badge, index) => (
+                  <Badge
+                    key={index}
+                    text={badge.text}
+                    bgColor={badge.bgColor}
+                    textColor={badge.textColor}
+                    borderColor={badge.borderColor}
+                    size="sm"
+                  />
+                ))}
+              </div>
+            </div>
+            
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 transition-colors duration-300">
+              {game.title}
+            </h3>
+            <p className="text-slate-600 dark:text-slate-300 mb-4 transition-colors duration-300">
+              {game.description}
+            </p>
+            
+            <div className="flex items-center justify-between">
+              <div className="text-sm text-slate-500 dark:text-slate-400">
+                <span>{game.footer}</span>
+              </div>
+              <div className="flex gap-2">
+                {game.id === 'roller-bowler' && (
+                  <CustomButton
+                    onClick={() => navigate('/projects/roller-bowler')}
+                    variant="blueAnimated"
+                    size="sm"
+                    className="shadow-lg hover:shadow-xl"
+                  >
+                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                    View Details
+                  </CustomButton>
+                )}
+                {game.id === 'void-strike' && (
+                  <CustomButton
+                    onClick={() => navigate('/projects/void-strike')}
+                    variant="purpleAnimated"
+                    size="sm"
+                    className="shadow-lg hover:shadow-xl"
+                  >
+                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                    View Details
+                  </CustomButton>
+                )}
+              </div>
+            </div>
+          </div>
         ))}
       </div>
 
@@ -117,7 +137,7 @@ const GameProjectsSection = () => {
               <SiItchdotio className="w-6 h-6 text-red-600 dark:text-red-400" />
             </div>
             <div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1 transition-colors duration-300">More Games on Itch.io</h3>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1 transition-colors duration-300">View my games in Itch.io</h3>
               <p className="text-slate-600 dark:text-slate-300 transition-colors duration-300">Explore my complete game portfolio</p>
             </div>
           </div>
@@ -130,17 +150,11 @@ const GameProjectsSection = () => {
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>
-            Visit Portfolio
+            View Profile
           </CustomButton>
         </div>
       </div>
 
-      {/* Download Modal */}
-      <DownloadModal
-        isOpen={isDownloadModalOpen}
-        onClose={() => setIsDownloadModalOpen(false)}
-        file={selectedFile}
-      />
     </div>
   );
 };

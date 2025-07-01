@@ -35,14 +35,7 @@ const HeroSection = () => {
     setIsDownloadModalOpen(true);
   };
 
-  const handleDownloadGame = (gameFileName, gameDetails) => {
-    setSelectedFile({
-      ...gameDetails,
-      filename: gameFileName,
-      url: `/games/${gameFileName}`
-    });
-    setIsDownloadModalOpen(true);
-  };
+
 
   const slides = [
     {
@@ -69,13 +62,8 @@ const HeroSection = () => {
       backgroundImage: '/roller-bawler-bg.png',
       iconImage: '/roller-bawler-icon.png',
       buttons: [
-        { text: 'Download Game', variant: 'purpleAnimated', action: () => handleDownloadGame('roller-bawler.zip', {
-          name: "Roller Bowler",
-          size: "45.2 MB",
-          type: "Windows Game",
-          description: "A 3D platformer game featuring ball physics and challenging levels. Built with Unity and C#."
-        }), icon: 'download' },
-        { text: 'View Projects', variant: 'blueAnimated', action: () => navigate('/projects'), icon: 'view' }
+        { text: 'View Details', variant: 'blueAnimated', action: () => navigate('/projects/roller-bowler'), icon: 'view' },
+        { text: 'View All Projects', variant: 'purpleAnimated', action: () => navigate('/projects'), icon: 'view' }
       ]
     },
     {
@@ -84,16 +72,13 @@ const HeroSection = () => {
       title: 'Void Strike',
       subtitle: '2D Space Shooter Game',
       description: 'A fast-paced 2D space shooter where you pilot a starfighter through waves of enemies and environmental hazards. Features responsive controls, dynamic enemy spawning, power-ups, and optimized object pooling.',
-      tech: ['Unity', 'C#', '2D Graphics', 'Performance Optimization'],
+      tech: ['Unity', 'C#', '2D Graphics', 'Game Design'],
       gradient: 'from-green-500 to-teal-600',
+      iconImage: '/void-strike-icon.png',
+      backgroundVideo: '/2DGameBackgroundVideo.mp4',
       buttons: [
-        { text: 'Download Game', variant: 'tealAnimated', action: () => handleDownloadGame('void-strike.zip', {
-          name: "Void Strike",
-          size: "32.8 MB",
-          type: "Windows Game",
-          description: "A 2D space shooter game with intense action and progressive difficulty. Features smooth controls and retro-style graphics."
-        }), icon: 'download' },
-        { text: 'Itch.io Portfolio', variant: 'purpleAnimated', action: () => window.open('https://moe2.itch.io', '_blank'), icon: 'external' }
+        { text: 'View Details', variant: 'blueAnimated', action: () => navigate('/projects/void-strike'), icon: 'view' },
+        { text: 'View All Projects', variant: 'purpleAnimated', action: () => navigate('/projects'), icon: 'view' }
       ]
     },
     {
@@ -403,21 +388,16 @@ const HeroSection = () => {
               <div className="relative z-10 bg-white/5 dark:bg-slate-950/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-2xl p-8 shadow-2xl">
                 {/* Project Icon */}
                 <div className="w-56 h-56 lg:w-64 lg:h-64 mx-auto mb-6 relative">
-                  {slide.id === 'roller-bowler' && slide.iconImage ? (
+                  {slide.iconImage ? (
                     <div className="w-full h-full bg-transparent rounded-2xl flex items-center justify-center shadow-2xl overflow-hidden">
                       <img 
                         src={slide.iconImage} 
-                        alt="Roller Bowler Icon"
+                        alt={`${slide.title} Icon`}
                         className="w-full h-full object-cover"
                       />
                     </div>
                   ) : (
                     <div className={`w-full h-full bg-gradient-to-br ${slide.gradient} rounded-2xl flex items-center justify-center text-6xl font-bold text-white shadow-2xl border`}>
-                      {slide.id === 'void-strike' && (
-                        <svg className="w-24 h-24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M15 14h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      )}
                       {slide.id === 'glim' && (
                         <svg className="w-24 h-24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
@@ -483,7 +463,21 @@ const HeroSection = () => {
             {slides.map((slide) => (
               <div key={slide.id} className="w-full h-full flex-shrink-0 flex items-center relative">
                 {/* Individual Slide Background */}
-                {slide.backgroundImage ? (
+                {slide.backgroundVideo ? (
+                  <>
+                    <div className="absolute inset-0">
+                      <video 
+                        src={slide.backgroundVideo}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-black/50"></div>
+                  </>
+                ) : slide.backgroundImage ? (
                   <>
                     <div className="absolute inset-0">
                       <img 

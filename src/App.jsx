@@ -6,6 +6,8 @@ import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Projects from './pages/Projects';
+import RollerBowler from './pages/RollerBowler';
+import VoidStrike from './pages/VoidStrike';
 import Footer from './components/Footer';
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/roller-bowler" element={<RollerBowler />} />
+            <Route path="/projects/void-strike" element={<VoidStrike />} />
           </Routes>
           <Footer />
         </div>
