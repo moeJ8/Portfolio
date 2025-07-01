@@ -52,6 +52,7 @@ const CustomButton = ({
       purpleAnimated: "transition-all duration-500 ease-in-out text-white bg-purple-600 border border-purple-600 hover:bg-purple-700 hover:border-purple-700 dark:text-purple-400 dark:bg-purple-900/20 dark:border-purple-800 dark:hover:bg-purple-900/30 dark:hover:text-purple-300",
       blueAnimated: "transition-all duration-500 ease-in-out text-white bg-blue-600 border border-blue-600 hover:bg-blue-700 hover:border-blue-700 dark:text-blue-400 dark:bg-blue-900/20 dark:border-blue-800 dark:hover:bg-blue-900/30 dark:hover:text-blue-300",
       redAnimated: "transition-all duration-500 ease-in-out text-white bg-red-600 border border-red-600 hover:bg-red-700 hover:border-red-700 dark:text-red-400 dark:bg-red-900/20 dark:border-red-800 dark:hover:bg-red-900/30 dark:hover:text-red-300",
+      grayAnimated: "transition-all duration-500 ease-in-out text-white bg-slate-600 border-2 border-slate-600 hover:bg-slate-700 hover:border-slate-700 dark:text-slate-400 dark:bg-slate-900/20 dark:border-slate-800 dark:hover:bg-slate-900/30 dark:hover:text-slate-300",
       gradientAnimated: "transition-all duration-500 ease-in-out text-white bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700 border-0 shadow-md hover:shadow-lg dark:from-blue-500 dark:to-teal-500 dark:hover:from-blue-600 dark:hover:to-teal-600",
       
       // Gradient variants

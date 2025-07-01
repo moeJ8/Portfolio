@@ -45,7 +45,7 @@ const HeroSection = () => {
       title: 'Mohammad Jada',
       subtitle: 'Fullstack Developer & Unity Game Designer',
       description: 'I create scalable web applications using the MERN stack and engaging interactive experiences with Unity. Specialized in building modern, user-centric digital solutions that bridge technology and creativity.',
-      skills: ['React', 'Node.js', 'MongoDB', 'JavaScript', 'Unity', 'C#', 'Next.js'],
+      skills: ['React', 'Node.js', 'MongoDB', 'JavaScript', 'Unity', 'C#'],
       buttons: [
         { text: 'Let\'s Talk', variant: 'tealAnimated', action: () => navigate('/contact'), icon: 'chat' },
         { text: 'Download CV', variant: 'purpleAnimated', action: handleDownloadCV, icon: 'download' },
@@ -121,7 +121,7 @@ const HeroSection = () => {
     }
 
     return () => clearInterval(autoPlayRef.current);
-  }, [isAutoPlaying, isDragging, slides.length]);
+  }, [isAutoPlaying, isDragging, slides.length, currentSlide]);
 
   // Navigation functions
   const nextSlide = () => {
@@ -141,7 +141,6 @@ const HeroSection = () => {
     e.preventDefault();
     setIsDragging(true);
     setDragStart(e.clientX);
-    setIsAutoPlaying(false);
     document.body.style.userSelect = 'none';
   };
 
@@ -165,7 +164,6 @@ const HeroSection = () => {
     
     setIsDragging(false);
     setDragOffset(0);
-    setIsAutoPlaying(true);
     document.body.style.userSelect = '';
   };
 
@@ -174,7 +172,6 @@ const HeroSection = () => {
     e.preventDefault();
     setIsDragging(true);
     setDragStart(e.touches[0].clientX);
-    setIsAutoPlaying(false);
     document.body.style.userSelect = 'none';
   };
 
@@ -239,13 +236,11 @@ const HeroSection = () => {
   const renderSlide = (slide) => {
     if (slide.type === 'hero') {
       return (
-        <div className="flex flex-col lg:flex-row items-center justify-between w-full h-full max-w-7xl mx-auto">
-          {/* Left Content */}
-          <div className="flex-1 text-center lg:text-left mb-12 lg:mb-0">
-
-
+        <div className="w-full h-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12 lg:py-0">
+          {/* Mobile/Tablet: Single Column Layout */}
+          <div className="flex lg:hidden flex-col items-center text-center space-y-4 h-full justify-start pt-1">
             {/* Main Heading */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
               <span className="text-gray-900 dark:text-white">Hi, I'm</span>
               <br />
               <span className="bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800 dark:from-gray-100 dark:via-white dark:to-gray-200 bg-clip-text text-transparent">
@@ -254,33 +249,64 @@ const HeroSection = () => {
             </h1>
 
             {/* Professional Title */}
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-700 dark:text-gray-300">
               {slide.subtitle}
             </h2>
 
             {/* Description */}
-            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mb-8 leading-relaxed">
+            <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed px-4">
               {slide.description}
             </p>
 
             {/* Location */}
-            <div className="flex items-center justify-center lg:justify-start mb-8 text-gray-600 dark:text-gray-400">
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="flex items-center justify-center text-gray-600 dark:text-gray-400">
+              <svg className="w-4 h-4 md:w-5 md:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
-              <span>Istanbul, Turkey</span>
+              <span className="text-sm md:text-base">Istanbul, Turkey</span>
+            </div>
+
+            {/* Skills Preview */}
+            <div className="flex flex-wrap gap-2 justify-center">
+              {slide.skills.map((skill) => {
+                const colors = getTechBadgeColors(skill);
+                return (
+                  <Badge
+                    key={skill}
+                    text={skill}
+                    bgColor={colors.bgColor}
+                    textColor={colors.textColor}
+                    borderColor={colors.borderColor}
+                    size="sm"
+                    className="backdrop-blur-sm"
+                  />
+                );
+              })}
+            </div>
+
+            {/* Profile Image */}
+            <div className="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 mx-auto relative">
+              <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800 rounded-2xl flex items-center justify-center text-2xl sm:text-3xl md:text-4xl font-bold text-white shadow-2xl border border-gray-600">
+                MJ
+              </div>
+              {/* Status indicator */}
+              <div className="absolute -bottom-1 -right-1 w-6 h-6 md:w-8 md:h-8 bg-emerald-500 rounded-full border-2 border-white dark:border-slate-900 flex items-center justify-center">
+                <svg className="w-3 h-3 md:w-4 md:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-col gap-3 w-full max-w-xs">
               {slide.buttons.map((button, index) => (
                 <CustomButton
                   key={index}
                   onClick={button.action}
                   variant={button.variant}
-                  size="lg"
-                  className="shadow-xl hover:shadow-2xl"
+                  size="md"
+                  className="shadow-xl hover:shadow-2xl w-full"
                 >
                   {getIcon(button.icon)}
                   {button.text}
@@ -289,49 +315,99 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right Content - Professional Image/Visual */}
-          <div className="flex-1 max-w-lg">
-            <div className="relative">
-              {/* Main Profile Area */}
-              <div className="relative z-10 bg-gradient-to-br from-white/80 to-gray-50/90 dark:from-slate-900/50 dark:to-slate-800/30 backdrop-blur-lg border border-gray-300/50 dark:border-slate-600/40 rounded-2xl p-8 shadow-2xl">
-                {/* Profile Image Placeholder */}
-                <div className="w-56 h-56 lg:w-64 lg:h-64 mx-auto mb-6 relative">
-                  <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800 rounded-2xl flex items-center justify-center text-6xl font-bold text-white shadow-2xl border border-gray-600">
-                    MJ
-                  </div>
-                  {/* Status indicator */}
-                  <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-emerald-500 rounded-full border-4 border-white dark:border-slate-900 flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                </div>
+          {/* Desktop: Two Column Layout */}
+          <div className="hidden lg:flex items-center justify-between w-full h-full">
+            {/* Left Content */}
+            <div className="flex-1 text-left">
+              {/* Main Heading */}
+              <h1 className="text-6xl font-bold mb-6 leading-tight">
+                <span className="text-gray-900 dark:text-white">Hi, I'm</span>
+                <br />
+                <span className="bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800 dark:from-gray-100 dark:via-white dark:to-gray-200 bg-clip-text text-transparent">
+                  {slide.title}
+                </span>
+              </h1>
 
-                {/* Skills Preview */}
-                <div className="space-y-3">
-                  <h3 className="text-lg font-semibold text-center mb-4 text-gray-800 dark:text-white">Core Technologies</h3>
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {slide.skills.map((skill) => {
-                      const colors = getTechBadgeColors(skill);
-                      return (
-                        <Badge
-                          key={skill}
-                          text={skill}
-                          bgColor={colors.bgColor}
-                          textColor={colors.textColor}
-                          borderColor={colors.borderColor}
-                          size="sm"
-                          className="backdrop-blur-sm"
-                        />
-                      );
-                    })}
-                  </div>
-                </div>
+              {/* Professional Title */}
+              <h2 className="text-3xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
+                {slide.subtitle}
+              </h2>
+
+              {/* Description */}
+              <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mb-8 leading-relaxed">
+                {slide.description}
+              </p>
+
+              {/* Location */}
+              <div className="flex items-center justify-start mb-8 text-gray-600 dark:text-gray-400">
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span className="text-base">Istanbul, Turkey</span>
               </div>
 
-              {/* Floating Elements */}
-              <div className="absolute -top-4 -left-4 w-24 h-24 bg-gray-300/30 dark:bg-slate-600/20 rounded-full blur-xl"></div>
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gray-400/30 dark:bg-slate-500/20 rounded-full blur-xl"></div>
+              {/* CTA Buttons */}
+              <div className="flex flex-row gap-4 justify-start">
+                {slide.buttons.map((button, index) => (
+                  <CustomButton
+                    key={index}
+                    onClick={button.action}
+                    variant={button.variant}
+                    size="lg"
+                    className="shadow-xl hover:shadow-2xl"
+                  >
+                    {getIcon(button.icon)}
+                    {button.text}
+                  </CustomButton>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Content - Professional Image/Visual */}
+            <div className="flex-1 max-w-lg">
+              <div className="relative">
+                {/* Main Profile Area */}
+                <div className="relative z-10 bg-gradient-to-br from-white/80 to-gray-50/90 dark:from-slate-900/50 dark:to-slate-800/30 backdrop-blur-lg border border-gray-300/50 dark:border-slate-600/40 rounded-2xl p-8 shadow-2xl">
+                  {/* Profile Image Placeholder */}
+                  <div className="w-64 h-64 mx-auto mb-6 relative">
+                    <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800 rounded-2xl flex items-center justify-center text-6xl font-bold text-white shadow-2xl border border-gray-600">
+                      MJ
+                    </div>
+                    {/* Status indicator */}
+                    <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-emerald-500 rounded-full border-4 border-white dark:border-slate-900 flex items-center justify-center">
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Skills Preview */}
+                  <div className="space-y-3">
+                    <h3 className="text-lg font-semibold text-center mb-4 text-gray-800 dark:text-white">Core Technologies</h3>
+                    <div className="flex flex-wrap gap-2 justify-center">
+                      {slide.skills.map((skill) => {
+                        const colors = getTechBadgeColors(skill);
+                        return (
+                          <Badge
+                            key={skill}
+                            text={skill}
+                            bgColor={colors.bgColor}
+                            textColor={colors.textColor}
+                            borderColor={colors.borderColor}
+                            size="sm"
+                            className="backdrop-blur-sm"
+                          />
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating Elements */}
+                <div className="absolute -top-4 -left-4 w-24 h-24 bg-gray-300/30 dark:bg-slate-600/20 rounded-full blur-xl"></div>
+                <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gray-400/30 dark:bg-slate-500/20 rounded-full blur-xl"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -339,13 +415,11 @@ const HeroSection = () => {
     } else {
       // Project slide
       return (
-        <div className="flex flex-col lg:flex-row items-center justify-between w-full h-full max-w-7xl mx-auto">
-          {/* Left Content */}
-          <div className={`flex-1 text-center lg:text-left mb-12 lg:mb-0 ${slide.backgroundImage || slide.backgroundVideo ? 'text-white' : ''}`}>
-
-
+        <div className="w-full h-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12 lg:py-0">
+          {/* Mobile/Tablet: Single Column Layout */}
+          <div className={`flex lg:hidden flex-col items-center text-center space-y-4 h-full justify-center ${slide.backgroundImage || slide.backgroundVideo ? 'text-white' : ''}`}>
             {/* Project Title */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
               <span className={slide.backgroundImage || slide.backgroundVideo ? 
                 "text-white drop-shadow-lg" : 
                 "bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800 dark:from-gray-100 dark:via-white dark:to-gray-200 bg-clip-text text-transparent"
@@ -356,22 +430,22 @@ const HeroSection = () => {
 
             {/* Project Type */}
             <h2 className={slide.backgroundImage || slide.backgroundVideo ? 
-              "text-xl sm:text-2xl lg:text-3xl font-semibold text-white/90 mb-4 drop-shadow-md" :
-              "text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-700 dark:text-gray-300 mb-4"
+              "text-lg sm:text-xl md:text-2xl font-semibold text-white/90 drop-shadow-md" :
+              "text-lg sm:text-xl md:text-2xl font-semibold text-gray-700 dark:text-gray-300"
             }>
               {slide.subtitle}
             </h2>
 
             {/* Description */}
             <p className={slide.backgroundImage || slide.backgroundVideo ?
-              "text-lg text-white/80 max-w-2xl mb-8 leading-relaxed drop-shadow-sm" :
-              "text-lg text-gray-600 dark:text-gray-400 max-w-2xl mb-8 leading-relaxed"
+              "text-base md:text-lg text-white/80 leading-relaxed drop-shadow-sm px-4" :
+              "text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed px-4"
             }>
               {slide.description}
             </p>
 
             {/* Tech Stack */}
-            <div className="flex flex-wrap gap-3 justify-center lg:justify-start mb-8">
+            <div className="flex flex-wrap gap-2 md:gap-3 justify-center">
               {slide.tech.map((tech) => {
                 const colors = getTechBadgeColors(tech);
                 return (
@@ -388,15 +462,48 @@ const HeroSection = () => {
               })}
             </div>
 
+            {/* Project Icon */}
+            <div className="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 mx-auto relative">
+              {slide.iconImage ? (
+                <div className="w-full h-full bg-transparent rounded-2xl flex items-center justify-center shadow-2xl overflow-hidden">
+                  <img 
+                    src={slide.iconImage} 
+                    alt={`${slide.title} Icon`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ) : slide.id === 'glim' ? (
+                <div className="w-full h-full flex items-center justify-center">
+                  <span className="text-slate-900 dark:text-white
+                    transition-all duration-300
+                    text-2xl sm:text-3xl md:text-4xl
+                    font-sans font-extrabold
+                    tracking-tight
+                    drop-shadow-[0_1px_1px_rgba(0,0,0,0.3)]">
+                    Glim
+                  </span>
+                </div>
+              ) : slide.id === 'rahalatek' ? (
+                <img 
+                  src="/rahalatek-logo.png" 
+                  alt="Rahalatek" 
+                  className="w-full h-full object-contain"
+                />
+              ) : (
+                <div className={`w-full h-full bg-gradient-to-br ${slide.gradient} rounded-2xl flex items-center justify-center text-6xl font-bold text-white shadow-2xl border`}>
+                </div>
+              )}
+            </div>
+
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-col gap-3 w-full max-w-xs">
               {slide.buttons.map((button, index) => (
                 <CustomButton
                   key={index}
                   onClick={button.action}
                   variant={button.variant}
-                  size="lg"
-                  className="shadow-xl hover:shadow-2xl"
+                  size="md"
+                  className="shadow-xl hover:shadow-2xl w-full"
                 >
                   {getIcon(button.icon)}
                   {button.text}
@@ -405,55 +512,123 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right Content - Project Visual */}
-          <div className="flex-1 max-w-lg">
-            <div className="relative">
-              {/* Project Card */}
-              <div className={`relative z-10 bg-white/5 dark:bg-slate-950/50 backdrop-blur-lg rounded-2xl p-8 shadow-2xl ${slide.backgroundImage || slide.backgroundVideo ? '' : 'border border-slate-200/50 dark:border-slate-600/40'}`}>
-                {/* Project Icon */}
-                <div className="w-56 h-56 lg:w-64 lg:h-64 mx-auto mb-6 relative">
-                  {slide.iconImage ? (
-                    <div className="w-full h-full bg-transparent rounded-2xl flex items-center justify-center shadow-2xl overflow-hidden">
-                      <img 
-                        src={slide.iconImage} 
-                        alt={`${slide.title} Icon`}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  ) : slide.id === 'glim' ? (
-                    <div className="w-full h-full flex items-center justify-center">
-                      <span className="text-slate-900 dark:text-white
-                        transition-all duration-300
-                        text-4xl lg:text-5xl
-                        font-sans font-extrabold
-                        tracking-tight
-                        drop-shadow-[0_1px_1px_rgba(0,0,0,0.3)]">
-                        Glim
-                      </span>
-                    </div>
-                  ) : slide.id === 'rahalatek' ? (
-                    <img 
-                      src="/rahalatek-logo.png" 
-                      alt="Rahalatek" 
-                      className="w-full h-full object-contain"
-                    />
-                  ) : (
-                    <div className={`w-full h-full bg-gradient-to-br ${slide.gradient} rounded-2xl flex items-center justify-center text-6xl font-bold text-white shadow-2xl border`}>
-                    </div>
-                  )}
-                </div>
+          {/* Desktop: Two Column Layout */}
+          <div className="hidden lg:flex items-center justify-between w-full h-full">
+            {/* Left Content */}
+            <div className={`flex-1 text-left ${slide.backgroundImage || slide.backgroundVideo ? 'text-white' : ''}`}>
 
-                {/* Project Info */}
-                <div className="space-y-3">
-                  {slide.id !== 'glim' && slide.id !== 'rahalatek' && (
-                    <h3 className={`text-lg font-semibold text-center mb-4 ${slide.backgroundImage || slide.backgroundVideo ? 'text-white drop-shadow-md' : 'text-gray-800 dark:text-white'}`}>{slide.title}</h3>
-                  )}
-                </div>
+
+              {/* Project Title */}
+              <h1 className="text-6xl font-bold mb-6 leading-tight">
+                <span className={slide.backgroundImage || slide.backgroundVideo ? 
+                  "text-white drop-shadow-lg" : 
+                  "bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800 dark:from-gray-100 dark:via-white dark:to-gray-200 bg-clip-text text-transparent"
+                }>
+                  {slide.title}
+                </span>
+              </h1>
+
+              {/* Project Type */}
+              <h2 className={slide.backgroundImage || slide.backgroundVideo ? 
+                "text-3xl font-semibold text-white/90 mb-4 drop-shadow-md" :
+                "text-3xl font-semibold text-gray-700 dark:text-gray-300 mb-4"
+              }>
+                {slide.subtitle}
+              </h2>
+
+              {/* Description */}
+              <p className={slide.backgroundImage || slide.backgroundVideo ?
+                "text-lg text-white/80 max-w-2xl mb-8 leading-relaxed drop-shadow-sm" :
+                "text-lg text-gray-600 dark:text-gray-400 max-w-2xl mb-8 leading-relaxed"
+              }>
+                {slide.description}
+              </p>
+
+              {/* Tech Stack */}
+              <div className="flex flex-wrap gap-3 justify-start mb-8">
+                {slide.tech.map((tech) => {
+                  const colors = getTechBadgeColors(tech);
+                  return (
+                    <Badge
+                      key={tech}
+                      text={tech}
+                      bgColor={colors.bgColor}
+                      textColor={colors.textColor}
+                      borderColor={colors.borderColor}
+                      size="md"
+                      className="backdrop-blur-sm"
+                    />
+                  );
+                })}
               </div>
 
-              {/* Floating Elements */}
-              <div className="absolute -top-4 -left-4 w-24 h-24 bg-gray-300/30 dark:bg-slate-600/20 rounded-full blur-xl"></div>
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gray-400/30 dark:bg-slate-500/20 rounded-full blur-xl"></div>
+              {/* CTA Buttons */}
+              <div className="flex flex-row gap-4 justify-start">
+                {slide.buttons.map((button, index) => (
+                  <CustomButton
+                    key={index}
+                    onClick={button.action}
+                    variant={button.variant}
+                    size="lg"
+                    className="shadow-xl hover:shadow-2xl"
+                  >
+                    {getIcon(button.icon)}
+                    {button.text}
+                  </CustomButton>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Content - Project Visual */}
+            <div className="flex-1 max-w-lg">
+              <div className="relative">
+                {/* Project Card */}
+                <div className={`relative z-10 bg-white/5 dark:bg-slate-950/5 backdrop-blur-lg rounded-2xl p-8 shadow-2xl ${slide.backgroundImage || slide.backgroundVideo ? '' : 'border border-slate-200/50 dark:border-slate-600/40'}`}>
+                  {/* Project Icon */}
+                  <div className="w-64 h-64 mx-auto mb-6 relative">
+                    {slide.iconImage ? (
+                      <div className="w-full h-full bg-transparent rounded-2xl flex items-center justify-center shadow-2xl overflow-hidden">
+                        <img 
+                          src={slide.iconImage} 
+                          alt={`${slide.title} Icon`}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    ) : slide.id === 'glim' ? (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <span className="text-slate-900 dark:text-white
+                          transition-all duration-300
+                          text-5xl
+                          font-sans font-extrabold
+                          tracking-tight
+                          drop-shadow-[0_1px_1px_rgba(0,0,0,0.3)]">
+                          Glim
+                        </span>
+                      </div>
+                    ) : slide.id === 'rahalatek' ? (
+                      <img 
+                        src="/rahalatek-logo.png" 
+                        alt="Rahalatek" 
+                        className="w-full h-full object-contain"
+                      />
+                    ) : (
+                      <div className={`w-full h-full bg-gradient-to-br ${slide.gradient} rounded-2xl flex items-center justify-center text-6xl font-bold text-white shadow-2xl border`}>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Project Info */}
+                  <div className="space-y-3">
+                    {slide.id !== 'glim' && slide.id !== 'rahalatek' && (
+                      <h3 className={`text-lg font-semibold text-center mb-4 ${slide.backgroundImage || slide.backgroundVideo ? 'text-white drop-shadow-md' : 'text-gray-800 dark:text-white'}`}>{slide.title}</h3>
+                    )}
+                  </div>
+                </div>
+
+                {/* Floating Elements */}
+                <div className="absolute -top-4 -left-4 w-24 h-24 bg-gray-300/30 dark:bg-slate-600/20 rounded-full blur-xl"></div>
+                <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gray-400/30 dark:bg-slate-500/20 rounded-full blur-xl"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -463,11 +638,11 @@ const HeroSection = () => {
 
   return (
     <section className="relative w-full h-[calc(100vh-5rem)] bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-gray-900 dark:text-white overflow-hidden transition-colors duration-300">
-      {/* Carousel Container - Full Width */}
-      <div className="relative w-full h-full">
-        <div 
-          ref={carouselRef}
-          className="relative overflow-hidden cursor-grab active:cursor-grabbing h-full flex items-center select-none"
+              {/* Carousel Container - Full Width */}
+        <div className="relative w-full h-full">
+                  <div 
+            ref={carouselRef}
+            className="relative overflow-hidden cursor-grab active:cursor-grabbing h-full flex items-center select-none"
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
@@ -528,32 +703,32 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Navigation Arrows */}
+        {/* Navigation Arrows - Desktop only */}
         <button
           onClick={prevSlide}
-          className="absolute left-16 sm:left-20 lg:left-24 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border border-gray-300 dark:border-slate-600 rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 z-20"
+          className="hidden lg:flex absolute left-4 sm:left-8 md:left-16 lg:left-24 top-1/2 transform -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border border-gray-300 dark:border-slate-600 rounded-full items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 z-20"
         >
-          <svg className="w-6 h-6 text-gray-700 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 md:w-6 md:h-6 text-gray-700 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
 
         <button
           onClick={nextSlide}
-          className="absolute right-16 sm:right-20 lg:right-24 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border border-gray-300 dark:border-slate-600 rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 z-20"
+          className="hidden lg:flex absolute right-4 sm:right-8 md:right-16 lg:right-24 top-1/2 transform -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border border-gray-300 dark:border-slate-600 rounded-full items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 z-20"
         >
-          <svg className="w-6 h-6 text-gray-700 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 md:w-6 md:h-6 text-gray-700 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
 
         {/* Slide Indicators */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
+        <div className="absolute bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 md:space-x-3 z-20">
           {slides.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              className={`w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
                 index === currentSlide
                   ? 'bg-gray-800 dark:bg-white scale-125'
                   : 'bg-gray-400 dark:bg-gray-600 hover:bg-gray-600 dark:hover:bg-gray-400'
@@ -565,14 +740,14 @@ const HeroSection = () => {
         {/* Auto-play Control */}
         <button
           onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-          className="absolute bottom-8 right-16 sm:right-20 lg:right-24 w-10 h-10 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border border-gray-300 dark:border-slate-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 z-20"
+          className="absolute bottom-6 md:bottom-8 right-4 sm:right-8 md:right-16 lg:right-24 w-8 h-8 md:w-10 md:h-10 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border border-gray-300 dark:border-slate-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 z-20"
         >
           {isAutoPlaying ? (
-            <svg className="w-5 h-5 text-gray-700 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 md:w-5 md:h-5 text-gray-700 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           ) : (
-            <svg className="w-5 h-5 text-gray-700 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 md:w-5 md:h-5 text-gray-700 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M15 14h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           )}
@@ -580,10 +755,10 @@ const HeroSection = () => {
 
         {/* Scroll Indicator - only show on hero slide */}
         {currentSlide === 0 && (
-          <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 text-center z-20">
-            <div className="text-gray-600 dark:text-gray-400 text-sm mb-2">Scroll to explore</div>
-            <div className="w-6 h-10 border-2 border-gray-600 dark:border-gray-400 rounded-full mx-auto relative">
-              <div className="w-1 h-3 bg-gray-600 dark:bg-gray-400 rounded-full absolute top-2 left-1/2 transform -translate-x-1/2 animate-bounce"></div>
+          <div className="absolute bottom-16 md:bottom-20 left-1/2 transform -translate-x-1/2 text-center z-20">
+            <div className="text-gray-600 dark:text-gray-400 text-xs md:text-sm mb-1 md:mb-2">Scroll to explore</div>
+            <div className="w-5 h-8 md:w-6 md:h-10 border-2 border-gray-600 dark:border-gray-400 rounded-full mx-auto relative">
+              <div className="w-1 h-2 md:h-3 bg-gray-600 dark:bg-gray-400 rounded-full absolute top-1.5 md:top-2 left-1/2 transform -translate-x-1/2 animate-bounce"></div>
             </div>
           </div>
         )}

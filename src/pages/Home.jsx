@@ -27,7 +27,7 @@ const Home = () => {
             <SocialMediaCard
               platform="GitHub"
               url="https://github.com/moeJ8"
-              buttonVariant="blueAnimated"
+              buttonVariant="grayAnimated"
               icon={
                 <PlatformIcon platform="github">
                   <svg fill="currentColor" viewBox="0 0 24 24">

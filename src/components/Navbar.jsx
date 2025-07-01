@@ -1,11 +1,33 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import DarkModeToggle from './DarkModeToggle';
+import CustomButton from './CustomButton';
+import PlatformIcon from './PlatformIcon';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const menuRef = useRef(null);
+  const menuButtonRef = useRef(null);
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target) && 
+          menuButtonRef.current && !menuButtonRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMenuOpen]);
 
   const handleConnectClick = () => {
     if (location.pathname === '/') {
@@ -32,14 +54,13 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-20">
           {/* Logo Section */}
           <Link to="/" className="flex items-center space-x-4 group">
-            <div className="relative">
-              <div className="h-12 w-12 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white font-bold text-xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-md">
+            <div className="w-12 h-12 rounded-xl bg-blue-600 border-2 border-blue-600 hover:bg-blue-700 hover:border-blue-700 dark:bg-blue-900/20 dark:border-blue-700 dark:hover:bg-blue-900/30 dark:hover:border-blue-600 flex items-center justify-center transition-all duration-300">
+              <span className="font-bold text-xl text-white dark:text-blue-200">
                 MJ
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+              </span>
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
+              <h1 className="text-2xl font-bold text-slate-900 dark:text-white transition-colors duration-300">
                 Mohammad Jada
               </h1>
               <p className="text-sm text-gray-500 dark:text-gray-400 font-medium transition-colors duration-300">Fullstack Developer</p>
@@ -79,22 +100,25 @@ const Navbar = () => {
             <DarkModeToggle />
 
             {/* CTA Button */}
-            <button
+            <CustomButton
               onClick={handleConnectClick}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2.5 rounded-full font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 hover:from-blue-700 hover:to-purple-700"
+              variant="blueAnimated"
+              size="md"
+              className="shadow-lg hover:shadow-xl backdrop-blur-lg rounded-full"
             >
               Connect With Me
-            </button>
+            </CustomButton>
           </div>
 
           {/* Mobile menu button and dark mode toggle */}
           <div className="md:hidden flex items-center space-x-2">
             <DarkModeToggle />
             <button
+              ref={menuButtonRef}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition-colors duration-200"
             >
-              <span className="sr-only">Open main menu</span>
+              <span className="sr-only">{isMenuOpen ? 'Close main menu' : 'Open main menu'}</span>
               {!isMenuOpen ? (
                 <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -110,7 +134,10 @@ const Navbar = () => {
 
         {/* Mobile Navigation Menu */}
         <div className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
-          <div className="px-2 pt-2 pb-6 space-y-1 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md rounded-lg mt-2 shadow-lg border border-gray-200/50 dark:border-gray-700/50 transition-colors duration-300">
+          <div 
+            ref={menuRef}
+            className="px-2 pt-2 pb-6 space-y-1 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md rounded-lg mt-2 shadow-lg border border-gray-200/50 dark:border-gray-700/50 transition-colors duration-300"
+          >
             <Link
               to="/"
               onClick={() => setIsMenuOpen(false)}
@@ -132,15 +159,17 @@ const Navbar = () => {
             >
               🚀 Projects
             </Link>
-            <button
+            <CustomButton
               onClick={() => {
                 setIsMenuOpen(false);
                 handleConnectClick();
               }}
-              className="block w-full px-4 py-3 text-center bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 mt-4"
+              variant="blueAnimated"
+              size="md"
+              className="shadow-lg hover:shadow-xl backdrop-blur-lg rounded-full w-full mt-4"
             >
-              🔗 Connect With Me
-            </button>
+              Connect With Me
+            </CustomButton>
           </div>
         </div>
       </div>
