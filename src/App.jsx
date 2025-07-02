@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import StayOnTop from './components/StayOnTop';
 import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
+import About from './pages/About';
 import Contact from './pages/Contact';
 import Projects from './pages/Projects';
 import RollerBowler from './pages/RollerBowler';
@@ -20,6 +21,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/roller-bowler" element={<RollerBowler />} />

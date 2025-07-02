@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { IoArrowDown } from 'react-icons/io5';
 import CustomButton from '../CustomButton';
+import Badge from '../Badge';
 
 const GameHero = ({ 
   title, 
@@ -20,6 +21,17 @@ const GameHero = ({
     if (downloadSection) {
       downloadSection.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const getTechBadgeColors = (tech) => {
+    const colorMap = {
+      'Unity': { bgColor: 'bg-slate-100 dark:bg-slate-900/50', textColor: 'text-slate-700 dark:text-slate-300', borderColor: 'border-slate-200 dark:border-slate-700' },
+      '3D': { bgColor: 'bg-blue-100 dark:bg-blue-900/50', textColor: 'text-blue-700 dark:text-blue-300', borderColor: 'border-blue-200 dark:border-blue-700' },
+      '2D': { bgColor: 'bg-green-100 dark:bg-green-900/50', textColor: 'text-green-700 dark:text-green-300', borderColor: 'border-green-200 dark:border-green-700' },
+      'Platformer': { bgColor: 'bg-orange-100 dark:bg-orange-900/50', textColor: 'text-orange-700 dark:text-orange-300', borderColor: 'border-orange-200 dark:border-orange-700' },
+      'Space Shooter': { bgColor: 'bg-purple-100 dark:bg-purple-900/50', textColor: 'text-purple-700 dark:text-purple-300', borderColor: 'border-purple-200 dark:border-purple-700' }
+    };
+    return colorMap[tech] || { bgColor: 'bg-gray-100 dark:bg-gray-900/50', textColor: 'text-gray-700 dark:text-gray-300', borderColor: 'border-gray-200 dark:border-gray-700' };
   };
 
   const renderButtons = () => (
@@ -119,14 +131,20 @@ const GameHero = ({
               {/* Tech Stack - Desktop */}
               {technologies && technologies.length > 0 && (
                 <div className="flex flex-wrap gap-3 justify-start mb-8">
-                  {technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full text-sm font-medium text-white"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                  {technologies.map((tech) => {
+                    const colors = getTechBadgeColors(tech);
+                    return (
+                      <Badge
+                        key={tech}
+                        text={tech}
+                        bgColor={colors.bgColor}
+                        textColor={colors.textColor}
+                        borderColor={colors.borderColor}
+                        size="md"
+                        className="backdrop-blur-sm shadow-lg"
+                      />
+                    );
+                  })}
                 </div>
               )}
 
@@ -191,14 +209,20 @@ const GameHero = ({
               {/* Tech Stack - Mobile/Tablet */}
               {technologies && technologies.length > 0 && (
                 <div className="flex flex-wrap gap-2 sm:gap-3 justify-center mb-8 px-4">
-                  {technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2 sm:px-3 py-1 sm:py-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full text-xs sm:text-sm font-medium text-white"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                  {technologies.map((tech) => {
+                    const colors = getTechBadgeColors(tech);
+                    return (
+                      <Badge
+                        key={tech}
+                        text={tech}
+                        bgColor={colors.bgColor}
+                        textColor={colors.textColor}
+                        borderColor={colors.borderColor}
+                        size="sm"
+                        className="backdrop-blur-sm shadow-lg"
+                      />
+                    );
+                  })}
                 </div>
               )}
             </div>

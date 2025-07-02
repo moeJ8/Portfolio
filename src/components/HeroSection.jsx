@@ -52,7 +52,7 @@ const HeroSection = () => {
       title: 'Roller Bawler',
       subtitle: '3D Unity Platformer Game',
       description: 'A 3D rolling ball platformer combining physics-based movement with creative level design. Features level-based progression, coin collection with persistent tracking, unlockable skins, and dynamic day-night skybox.',
-      tech: ['Unity', 'C#', '3D Physics', 'Game Design'],
+      tech: ['Unity', '3D', 'Platformer'],
       gradient: 'from-blue-500 to-purple-600',
       backgroundImage: '/roller-bawler-bg.png',
       iconImage: '/roller-bawler-icon.png',
@@ -67,7 +67,7 @@ const HeroSection = () => {
       title: 'Void Strike',
       subtitle: '2D Space Shooter Game',
       description: 'A fast-paced 2D space shooter where you pilot a starfighter through waves of enemies and environmental hazards. Features responsive controls, dynamic enemy spawning, power-ups, and optimized object pooling.',
-      tech: ['Unity', 'C#', '2D Graphics', 'Game Design'],
+      tech: ['Unity', '2D', 'Space Shooter'],
       gradient: 'from-green-500 to-teal-600',
       iconImage: '/void-strike-icon.png',
       backgroundVideo: '/2DGameBackgroundVideo.mp4',
@@ -202,9 +202,10 @@ const HeroSection = () => {
     const colorMap = {
       'Unity': { bgColor: 'bg-slate-100 dark:bg-slate-900/50', textColor: 'text-slate-700 dark:text-slate-300', borderColor: 'border-slate-200 dark:border-slate-700' },
       'C#': { bgColor: 'bg-purple-100 dark:bg-purple-900/50', textColor: 'text-purple-700 dark:text-purple-300', borderColor: 'border-purple-200 dark:border-purple-700' },
-      '3D Physics': { bgColor: 'bg-blue-100 dark:bg-blue-900/50', textColor: 'text-blue-700 dark:text-blue-300', borderColor: 'border-blue-200 dark:border-blue-700' },
-      '2D Graphics': { bgColor: 'bg-green-100 dark:bg-green-900/50', textColor: 'text-green-700 dark:text-green-300', borderColor: 'border-green-200 dark:border-green-700' },
-      'Game Design': { bgColor: 'bg-orange-100 dark:bg-orange-900/50', textColor: 'text-orange-700 dark:text-orange-300', borderColor: 'border-orange-200 dark:border-orange-700' },
+      '3D': { bgColor: 'bg-blue-100 dark:bg-blue-900/50', textColor: 'text-blue-700 dark:text-blue-300', borderColor: 'border-blue-200 dark:border-blue-700' },
+      '2D': { bgColor: 'bg-green-100 dark:bg-green-900/50', textColor: 'text-green-700 dark:text-green-300', borderColor: 'border-green-200 dark:border-green-700' },
+      'Platformer': { bgColor: 'bg-orange-100 dark:bg-orange-900/50', textColor: 'text-orange-700 dark:text-orange-300', borderColor: 'border-orange-200 dark:border-orange-700' },
+      'Space Shooter': { bgColor: 'bg-purple-100 dark:bg-purple-900/50', textColor: 'text-purple-700 dark:text-purple-300', borderColor: 'border-purple-200 dark:border-purple-700' },
       'React': { bgColor: 'bg-blue-100 dark:bg-blue-900/50', textColor: 'text-blue-700 dark:text-blue-300', borderColor: 'border-blue-200 dark:border-blue-700' },
       'Node.js': { bgColor: 'bg-green-100 dark:bg-green-900/50', textColor: 'text-green-700 dark:text-green-300', borderColor: 'border-green-200 dark:border-green-700' },
       'MongoDB': { bgColor: 'bg-green-100 dark:bg-green-900/50', textColor: 'text-green-700 dark:text-green-300', borderColor: 'border-green-200 dark:border-green-700' },
@@ -715,7 +716,7 @@ const HeroSection = () => {
         {/* Navigation Arrows - Desktop only */}
         <button
           onClick={prevSlide}
-          className="hidden lg:flex absolute left-4 sm:left-8 md:left-16 lg:left-24 top-1/2 transform -translate-y-1/2 w-12 h-12 transition-all duration-500 ease-in-out text-white bg-blue-600 border border-blue-600 hover:bg-blue-700 hover:border-blue-700 dark:text-blue-400 dark:bg-blue-900/20 dark:border-blue-800 dark:hover:bg-blue-900/30 dark:hover:text-blue-300 backdrop-blur-lg rounded-full items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-2 dark:focus:ring-offset-gray-900 z-20"
+          className="hidden lg:flex absolute left-4 sm:left-8 md:left-16 lg:left-24 top-1/2 transform -translate-y-1/2 w-12 h-12 transition-all duration-500 ease-in-out text-blue-700 bg-blue-50 border-2 border-blue-200 hover:bg-blue-100 hover:border-blue-300 hover:text-blue-800 dark:text-blue-400 dark:bg-blue-900/20 dark:border-blue-800 dark:hover:bg-blue-900/30 dark:hover:text-blue-300 backdrop-blur-lg rounded-full items-center justify-center shadow-md hover:shadow-lg hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-2 dark:focus:ring-offset-gray-900 z-20"
           aria-label="Previous slide"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -725,7 +726,7 @@ const HeroSection = () => {
 
         <button
           onClick={nextSlide}
-          className="hidden lg:flex absolute right-4 sm:right-8 md:right-16 lg:right-24 top-1/2 transform -translate-y-1/2 w-12 h-12 transition-all duration-500 ease-in-out text-white bg-blue-600 border border-blue-600 hover:bg-blue-700 hover:border-blue-700 dark:text-blue-400 dark:bg-blue-900/20 dark:border-blue-800 dark:hover:bg-blue-900/30 dark:hover:text-blue-300 backdrop-blur-lg rounded-full items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-2 dark:focus:ring-offset-gray-900 z-20"
+          className="hidden lg:flex absolute right-4 sm:right-8 md:right-16 lg:right-24 top-1/2 transform -translate-y-1/2 w-12 h-12 transition-all duration-500 ease-in-out text-blue-700 bg-blue-50 border-2 border-blue-200 hover:bg-blue-100 hover:border-blue-300 hover:text-blue-800 dark:text-blue-400 dark:bg-blue-900/20 dark:border-blue-800 dark:hover:bg-blue-900/30 dark:hover:text-blue-300 backdrop-blur-lg rounded-full items-center justify-center shadow-md hover:shadow-lg hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-2 dark:focus:ring-offset-gray-900 z-20"
           aria-label="Next slide"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

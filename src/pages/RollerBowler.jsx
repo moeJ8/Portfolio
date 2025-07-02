@@ -18,7 +18,7 @@ const RollerBowler = () => {
     title: "Roller Bawler",
     subtitle: "3D Unity Platformer Game",
     description: "A 3D rolling ball platformer combining physics-based movement with creative level design. Features level-based progression, coin collection with persistent tracking, unlockable skins, and dynamic day-night skybox.",
-    technologies: ["Unity", "C#", "3D Physics", "Game Design"],
+    technologies: ["Unity", "3D", "Platformer"],
     backgroundImage: "/roller-bawler-bg.png",
     iconImage: "/roller-bawler-icon.png",
     overview: [

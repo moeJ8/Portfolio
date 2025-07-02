@@ -18,7 +18,7 @@ const VoidStrike = () => {
     title: "Void Strike",
     subtitle: "2D Space Shooter Game",
     description: "A fast-paced 2D space shooter where you pilot a starfighter through waves of enemies and environmental hazards. Features responsive controls, dynamic enemy spawning, power-ups, and optimized object pooling.",
-    technologies: ["Unity", "C#", "2D Graphics", "Performance Optimization"],
+    technologies: ["Unity", "2D", "Space Shooter"],
     backgroundVideo: "/2DGameBackgroundVideo.mp4",
     iconImage: "/void-strike-icon.png",
     overview: [

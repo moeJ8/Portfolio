@@ -36,40 +36,40 @@ const PlatformIcon = ({ platform, children, size = "md" }) => {
     switch (platform?.toLowerCase()) {
       case 'github':
         return {
-          container: `${baseClasses} bg-slate-600 border-slate-600 hover:bg-slate-700 hover:border-slate-700 dark:bg-slate-900/20 dark:border-slate-700 dark:hover:bg-slate-900/30 dark:hover:border-slate-600`,
-          icon: `${iconSizes[size]} text-white dark:text-slate-400`
+          container: `${baseClasses} bg-slate-50 border-slate-200 hover:bg-slate-100 hover:border-slate-300 shadow-sm hover:shadow-md dark:bg-slate-900/20 dark:border-slate-700 dark:hover:bg-slate-900/30 dark:hover:border-slate-600`,
+          icon: `${iconSizes[size]} text-slate-700 dark:text-slate-400`
         };
       case 'itch.io':
       case 'itch':
         return {
-          container: `${baseClasses} bg-red-600 border-red-600 hover:bg-red-700 hover:border-red-700 dark:bg-red-900/20 dark:border-red-700 dark:hover:bg-red-900/30 dark:hover:border-red-600`,
-          icon: `${iconSizes[size]} text-white dark:text-red-400`
+          container: `${baseClasses} bg-red-50 border-red-200 hover:bg-red-100 hover:border-red-300 shadow-sm hover:shadow-md dark:bg-red-900/20 dark:border-red-700 dark:hover:bg-red-900/30 dark:hover:border-red-600`,
+          icon: `${iconSizes[size]} text-red-700 dark:text-red-400`
         };
       case 'linkedin':
         return {
-          container: `${baseClasses} bg-blue-600 border-blue-600 hover:bg-blue-700 hover:border-blue-700 dark:bg-blue-900/20 dark:border-blue-700 dark:hover:bg-blue-900/30 dark:hover:border-blue-600`,
-          icon: `${iconSizes[size]} text-white dark:text-blue-400`
+          container: `${baseClasses} bg-blue-50 border-blue-200 hover:bg-blue-100 hover:border-blue-300 shadow-sm hover:shadow-md dark:bg-blue-900/20 dark:border-blue-700 dark:hover:bg-blue-900/30 dark:hover:border-blue-600`,
+          icon: `${iconSizes[size]} text-blue-700 dark:text-blue-400`
         };
       case 'purple':
         return {
-          container: `${baseClasses} bg-purple-600 border-purple-600 hover:bg-purple-700 hover:border-purple-700 dark:bg-purple-900/20 dark:border-purple-700 dark:hover:bg-purple-900/30 dark:hover:border-purple-600`,
-          icon: `${iconSizes[size]} text-white dark:text-purple-400`
+          container: `${baseClasses} bg-purple-50 border-purple-200 hover:bg-purple-100 hover:border-purple-300 shadow-sm hover:shadow-md dark:bg-purple-900/20 dark:border-purple-700 dark:hover:bg-purple-900/30 dark:hover:border-purple-600`,
+          icon: `${iconSizes[size]} text-purple-700 dark:text-purple-400`
         };
       case 'blue':
         return {
-          container: `${baseClasses} bg-blue-600 border-blue-600 hover:bg-blue-700 hover:border-blue-700 dark:bg-blue-900/20 dark:border-blue-700 dark:hover:bg-blue-900/30 dark:hover:border-blue-600`,
-          icon: `${iconSizes[size]} text-white dark:text-blue-400`
+          container: `${baseClasses} bg-blue-50 border-blue-200 hover:bg-blue-100 hover:border-blue-300 shadow-sm hover:shadow-md dark:bg-blue-900/20 dark:border-blue-700 dark:hover:bg-blue-900/30 dark:hover:border-blue-600`,
+          icon: `${iconSizes[size]} text-blue-700 dark:text-blue-400`
         };
       case 'gray':
       case 'slate':
         return {
-          container: `${baseClasses} bg-slate-600 border-slate-600 hover:bg-slate-700 hover:border-slate-700 dark:bg-slate-900/20 dark:border-slate-700 dark:hover:bg-slate-900/30 dark:hover:border-slate-600`,
-          icon: `${iconSizes[size]} text-white dark:text-slate-400`
+          container: `${baseClasses} bg-slate-50 border-slate-200 hover:bg-slate-100 hover:border-slate-300 shadow-sm hover:shadow-md dark:bg-slate-900/20 dark:border-slate-700 dark:hover:bg-slate-900/30 dark:hover:border-slate-600`,
+          icon: `${iconSizes[size]} text-slate-700 dark:text-slate-400`
         };
       case 'green':
         return {
-          container: `${baseClasses} bg-green-600 border-green-600 hover:bg-green-700 hover:border-green-700 dark:bg-green-900/30 dark:border-green-600 dark:hover:bg-green-900/40 dark:hover:border-green-500`,
-          icon: `${iconSizes[size]} text-white dark:text-green-400`
+          container: `${baseClasses} bg-green-50 border-green-200 hover:bg-green-100 hover:border-green-300 shadow-sm hover:shadow-md dark:bg-green-900/30 dark:border-green-600 dark:hover:bg-green-900/40 dark:hover:border-green-500`,
+          icon: `${iconSizes[size]} text-green-700 dark:text-green-400`
         };
       case 'blue-light':
         return {

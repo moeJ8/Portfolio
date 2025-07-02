@@ -3,7 +3,6 @@ import AboutHeader from '../components/AboutHeader';
 import ProfessionalOverview from '../components/ProfessionalOverview';
 import WebProjectsSection from '../components/WebProjectsSection';
 import GameProjectsSection from '../components/GameProjectsSection';
-import SkillsExpertiseSection from '../components/SkillsExpertiseSection';
 import CustomButton from '../components/CustomButton';
 
 const Projects = () => {
@@ -16,7 +15,6 @@ const Projects = () => {
         <ProfessionalOverview />
         <WebProjectsSection />
         <GameProjectsSection />
-        <SkillsExpertiseSection />
         
         {/* Call to Action Section */}
         <div className="mt-20 text-center">

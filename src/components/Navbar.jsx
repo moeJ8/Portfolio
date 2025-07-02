@@ -54,8 +54,8 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-20">
           {/* Logo Section */}
           <Link to="/" className="flex items-center space-x-4 group">
-            <div className="w-12 h-12 rounded-xl bg-blue-600 border-2 border-blue-600 hover:bg-blue-700 hover:border-blue-700 dark:bg-blue-900/20 dark:border-blue-700 dark:hover:bg-blue-900/30 dark:hover:border-blue-600 flex items-center justify-center transition-all duration-300">
-              <span className="font-bold text-xl text-white dark:text-blue-200">
+            <div className="w-12 h-12 rounded-xl bg-blue-50 border-2 border-blue-200 hover:bg-blue-100 hover:border-blue-300 dark:bg-blue-900/20 dark:border-blue-700 dark:hover:bg-blue-900/30 dark:hover:border-blue-600 flex items-center justify-center transition-all duration-300 shadow-sm hover:shadow-md">
+              <span className="font-bold text-xl text-blue-700 dark:text-blue-200">
                 MJ
               </span>
             </div>
@@ -72,29 +72,62 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center space-x-4 xl:space-x-6">
             <Link
               to="/"
-              className="relative px-2 lg:px-4 py-2 text-gray-700 dark:text-gray-300 font-medium transition-all duration-300 hover:text-blue-600 dark:hover:text-blue-400 group"
+              className={`relative px-2 lg:px-4 py-2 font-medium transition-all duration-300 group ${
+                location.pathname === '/' 
+                  ? 'text-blue-600 dark:text-blue-400' 
+                  : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
+              }`}
             >
               <span className="relative z-10">Home</span>
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-              <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></div>
-            </Link>
-            
-            <Link
-              to="/contact"
-              className="relative px-2 lg:px-4 py-2 text-gray-700 dark:text-gray-300 font-medium transition-all duration-300 hover:text-blue-600 dark:hover:text-blue-400 group"
-            >
-              <span className="relative z-10">Contact</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-              <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></div>
+              <div className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 ${
+                location.pathname === '/' ? 'w-full' : 'w-0 group-hover:w-full'
+              }`}></div>
             </Link>
             
             <Link
               to="/projects"
-              className="relative px-2 lg:px-4 py-2 text-gray-700 dark:text-gray-300 font-medium transition-all duration-300 hover:text-blue-600 dark:hover:text-blue-400 group"
+              className={`relative px-2 lg:px-4 py-2 font-medium transition-all duration-300 group ${
+                location.pathname === '/projects' || location.pathname.startsWith('/projects/') 
+                  ? 'text-blue-600 dark:text-blue-400' 
+                  : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
+              }`}
             >
               <span className="relative z-10">Projects</span>
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-              <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></div>
+              <div className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 ${
+                location.pathname === '/projects' || location.pathname.startsWith('/projects/') ? 'w-full' : 'w-0 group-hover:w-full'
+              }`}></div>
+            </Link>
+            
+            <Link
+              to="/contact"
+              className={`relative px-2 lg:px-4 py-2 font-medium transition-all duration-300 group ${
+                location.pathname === '/contact' 
+                  ? 'text-blue-600 dark:text-blue-400' 
+                  : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
+              }`}
+            >
+              <span className="relative z-10">Contact</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+              <div className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 ${
+                location.pathname === '/contact' ? 'w-full' : 'w-0 group-hover:w-full'
+              }`}></div>
+            </Link>
+            
+            <Link
+              to="/about"
+              className={`relative px-2 lg:px-4 py-2 font-medium transition-all duration-300 group ${
+                location.pathname === '/about' 
+                  ? 'text-blue-600 dark:text-blue-400' 
+                  : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
+              }`}
+            >
+              <span className="relative z-10">About</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+              <div className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 ${
+                location.pathname === '/about' ? 'w-full' : 'w-0 group-hover:w-full'
+              }`}></div>
             </Link>
 
             {/* Dark Mode Toggle */}
@@ -143,23 +176,46 @@ const Navbar = () => {
             <Link
               to="/"
               onClick={() => setIsMenuOpen(false)}
-              className="block px-4 py-3 text-gray-700 dark:text-gray-300 font-medium hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
+              className={`block px-4 py-3 font-medium rounded-lg transition-colors duration-200 ${
+                location.pathname === '/' 
+                  ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20' 
+                  : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-800'
+              }`}
             >
               🏠 Home
             </Link>
             <Link
+              to="/projects"
+              onClick={() => setIsMenuOpen(false)}
+              className={`block px-4 py-3 font-medium rounded-lg transition-colors duration-200 ${
+                location.pathname === '/projects' || location.pathname.startsWith('/projects/') 
+                  ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20' 
+                  : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-800'
+              }`}
+            >
+              🚀 Projects
+            </Link>
+            <Link
               to="/contact"
               onClick={() => setIsMenuOpen(false)}
-              className="block px-4 py-3 text-gray-700 dark:text-gray-300 font-medium hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
+              className={`block px-4 py-3 font-medium rounded-lg transition-colors duration-200 ${
+                location.pathname === '/contact' 
+                  ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20' 
+                  : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-800'
+              }`}
             >
               📞 Contact
             </Link>
             <Link
-              to="/projects"
+              to="/about"
               onClick={() => setIsMenuOpen(false)}
-              className="block px-4 py-3 text-gray-700 dark:text-gray-300 font-medium hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
+              className={`block px-4 py-3 font-medium rounded-lg transition-colors duration-200 ${
+                location.pathname === '/about' 
+                  ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20' 
+                  : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-800'
+              }`}
             >
-              🚀 Projects
+              👨‍💻 About
             </Link>
             <CustomButton
               onClick={() => {
