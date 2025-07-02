@@ -14,15 +14,15 @@ const Home = () => {
       <AboutSection />
 
       {/* Social Media Section */}
-      <section id="social-media" className="py-16 bg-gray-50 dark:bg-slate-950 transition-colors duration-300">
+      <section id="social-media" className="py-12 sm:py-16 bg-gray-50 dark:bg-slate-950 transition-colors duration-300">
         <div className="max-w-screen-xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 transition-colors duration-300">Connect With Me</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 transition-colors duration-300">Follow my professional journey across digital platforms</p>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mt-4"></div>
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 transition-colors duration-300">Connect With Me</h2>
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 transition-colors duration-300 px-2">Follow my professional journey across digital platforms</p>
+            <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mt-3 sm:mt-4"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {/* GitHub */}
             <SocialMediaCard
               platform="GitHub"

@@ -6,30 +6,30 @@ const WebProjectsSection = () => {
   return (
     <div className="mb-16">
       {/* Section Header */}
-      <div className="flex items-center mb-8">
-        <div className="mr-4">
+      <div className="flex flex-col sm:flex-row sm:items-center mb-6 sm:mb-8 text-center sm:text-left">
+        <div className="flex justify-center sm:justify-start mb-3 sm:mb-0 sm:mr-4">
           <PlatformIcon platform="blue" size="section">
             <HiCode />
           </PlatformIcon>
         </div>
         <div>
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white transition-colors duration-300">Web Development Projects</h2>
-          <p className="text-slate-600 dark:text-slate-300 mt-1">Full-stack applications and digital solutions</p>
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white transition-colors duration-300">Web Development Projects</h2>
+          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-1">Full-stack applications and digital solutions</p>
         </div>
       </div>
 
       {/* Projects Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
         
         {/* Glim Project Card */}
         <ProjectCard
           title="Glim"
           description="A modern blogging platform built with React and advanced CMS features. Showcases responsive design, user authentication, and content management."
           icon={
-            <div className="w-20 h-20 flex items-center justify-center">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center">
               <span className="text-slate-900 dark:text-white
                 transition-all duration-300
-                text-2xl
+                text-xl sm:text-2xl
                 font-sans font-extrabold
                 tracking-tight
                 drop-shadow-[0_1px_1px_rgba(0,0,0,0.3)]">
@@ -60,7 +60,7 @@ const WebProjectsSection = () => {
             <img 
               src="/rahalatek-logo.png" 
               alt="Rahalatek" 
-              className="w-20 h-20 object-contain"
+              className="w-16 h-16 sm:w-20 sm:h-20 object-contain"
             />
           }
           gradients={['from-transparent', 'to-transparent']}

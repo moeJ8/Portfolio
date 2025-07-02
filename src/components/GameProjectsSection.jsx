@@ -18,7 +18,7 @@ const GameProjectsSection = () => {
         <img 
           src="/roller-bawler-icon.png" 
           alt="Roller Bawler" 
-          className="w-16 h-16 object-cover rounded-xl"
+          className="w-12 h-12 sm:w-16 sm:h-16 object-cover rounded-xl"
         />
       ),
       gradients: ['from-transparent', 'to-transparent'],
@@ -38,7 +38,7 @@ const GameProjectsSection = () => {
         <img 
           src="/void-strike-icon.png" 
           alt="Void Strike" 
-          className="w-16 h-16 object-cover rounded-xl"
+          className="w-12 h-12 sm:w-16 sm:h-16 object-cover rounded-xl"
         />
       ),
       gradients: ['from-transparent', 'to-transparent'],
@@ -54,25 +54,27 @@ const GameProjectsSection = () => {
 
   return (
     <div className="mb-16">
-      <div className="flex items-center mb-8">
-        <div className="mr-4">
+      <div className="flex flex-col sm:flex-row sm:items-center mb-6 sm:mb-8 text-center sm:text-left">
+        <div className="flex justify-center sm:justify-start mb-3 sm:mb-0 sm:mr-4">
           <PlatformIcon platform="purple" size="section">
             <IoGameController />
           </PlatformIcon>
         </div>
         <div>
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white transition-colors duration-300">Game Development Portfolio</h2>
-          <p className="text-slate-600 dark:text-slate-300 mt-1">Interactive games and entertainment applications</p>
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white transition-colors duration-300">Game Development Projects</h2>
+          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-1">Interactive games and entertainment applications</p>
         </div>
       </div>
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mb-8">
         {games.map((game) => (
-          <div key={game.id} className="bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
-            {/* Card Header */}
-            <div className="flex items-start justify-between mb-4">
-              {game.icon}
-              <div className="flex flex-wrap gap-2">
+          <div key={game.id} className="bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+            {/* Card Header - Mobile: Stack vertically, Desktop: Side by side */}
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 space-y-3 sm:space-y-0">
+              <div className="flex justify-center sm:justify-start">
+                {game.icon}
+              </div>
+              <div className="flex flex-wrap gap-1.5 sm:gap-2 justify-center sm:justify-end">
                 {game.badges.map((badge, index) => (
                   <Badge
                     key={index}
@@ -86,24 +88,25 @@ const GameProjectsSection = () => {
               </div>
             </div>
             
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 transition-colors duration-300">
+            <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2 text-center sm:text-left transition-colors duration-300">
               {game.title}
             </h3>
-            <p className="text-slate-600 dark:text-slate-300 mb-4 transition-colors duration-300">
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4 text-center sm:text-left leading-relaxed transition-colors duration-300">
               {game.description}
             </p>
             
-            <div className="flex items-center justify-between">
-              <div className="text-sm text-slate-500 dark:text-slate-400">
+            {/* Footer and Button - Mobile: Stack vertically, Desktop: Side by side */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
+              <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 text-center sm:text-left">
                 <span>{game.footer}</span>
               </div>
-              <div className="flex gap-2">
+              <div className="flex gap-2 justify-center sm:justify-end">
                 {game.id === 'roller-bowler' && (
                   <CustomButton
                     onClick={() => navigate('/projects/roller-bowler')}
                     variant="blueAnimated"
                     size="sm"
-                    className="shadow-lg hover:shadow-xl"
+                    className="shadow-lg hover:shadow-xl w-full sm:w-auto"
                   >
                     <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -117,7 +120,7 @@ const GameProjectsSection = () => {
                     onClick={() => navigate('/projects/void-strike')}
                     variant="purpleAnimated"
                     size="sm"
-                    className="shadow-lg hover:shadow-xl"
+                    className="shadow-lg hover:shadow-xl w-full sm:w-auto"
                   >
                     <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -133,24 +136,24 @@ const GameProjectsSection = () => {
       </div>
 
       {/* Itch.io Portfolio Link */}
-      <div className="bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg rounded-2xl p-6 shadow-xl transition-all duration-300">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <div className="mr-4">
+      <div className="bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg rounded-2xl p-4 sm:p-6 shadow-xl transition-all duration-300">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+          <div className="flex flex-col sm:flex-row sm:items-center text-center sm:text-left">
+            <div className="flex justify-center sm:justify-start mb-3 sm:mb-0 sm:mr-4">
               <PlatformIcon platform="itch.io">
                 <SiItchdotio />
               </PlatformIcon>
             </div>
             <div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1 transition-colors duration-300">View my games in Itch.io</h3>
-              <p className="text-slate-600 dark:text-slate-300 transition-colors duration-300">Explore my complete game portfolio</p>
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-1 transition-colors duration-300">View my games in Itch.io</h3>
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 transition-colors duration-300">Explore my complete game portfolio</p>
             </div>
           </div>
           <CustomButton
             onClick={() => window.open('https://moe2.itch.io', '_blank')}
             variant="redAnimated"
-            size="lg"
-            className="shadow-lg hover:shadow-xl"
+            size="md"
+            className="shadow-lg hover:shadow-xl w-full sm:w-auto"
           >
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />

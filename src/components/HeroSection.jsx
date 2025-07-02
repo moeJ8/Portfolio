@@ -141,50 +141,60 @@ const HeroSection = () => {
     e.preventDefault();
     setIsDragging(true);
     setDragStart(e.clientX);
+    setIsAutoPlaying(false);
     document.body.style.userSelect = 'none';
   };
 
   const handleMouseMove = (e) => {
     if (!isDragging) return;
     e.preventDefault();
-    const currentX = e.clientX;
-    const diff = currentX - dragStart;
+    const diff = e.clientX - dragStart;
     setDragOffset(diff);
   };
 
   const handleMouseUp = () => {
     if (!isDragging) return;
     
-    const threshold = 100;
-    if (dragOffset > threshold) {
+    if (dragOffset > 120) {
       prevSlide();
-    } else if (dragOffset < -threshold) {
+    } else if (dragOffset < -120) {
       nextSlide();
     }
     
     setIsDragging(false);
     setDragOffset(0);
+    setIsAutoPlaying(true);
     document.body.style.userSelect = '';
   };
 
   // Touch events for mobile
   const handleTouchStart = (e) => {
-    e.preventDefault();
     setIsDragging(true);
     setDragStart(e.touches[0].clientX);
+    setIsAutoPlaying(false);
     document.body.style.userSelect = 'none';
   };
 
   const handleTouchMove = (e) => {
     if (!isDragging) return;
     e.preventDefault();
-    const currentX = e.touches[0].clientX;
-    const diff = currentX - dragStart;
+    const diff = e.touches[0].clientX - dragStart;
     setDragOffset(diff);
   };
 
   const handleTouchEnd = () => {
-    handleMouseUp();
+    if (!isDragging) return;
+    
+    if (dragOffset > 10) {
+      prevSlide();
+    } else if (dragOffset < -10) {
+      nextSlide();
+    }
+    
+    setIsDragging(false);
+    setDragOffset(0);
+    setIsAutoPlaying(true);
+    document.body.style.userSelect = '';
   };
 
   // Cleanup on unmount
@@ -236,82 +246,87 @@ const HeroSection = () => {
   const renderSlide = (slide) => {
     if (slide.type === 'hero') {
       return (
-        <div className="w-full h-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12 lg:py-0">
+        <div className="w-full h-full max-w-7xl mx-auto px-6 md:px-6 lg:px-8 py-2 md:py-12 lg:py-0">
           {/* Mobile/Tablet: Single Column Layout */}
-          <div className="flex lg:hidden flex-col items-center text-center space-y-4 h-full justify-start pt-1">
-            {/* Main Heading */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
-              <span className="text-gray-900 dark:text-white">Hi, I'm</span>
-              <br />
-              <span className="bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800 dark:from-gray-100 dark:via-white dark:to-gray-200 bg-clip-text text-transparent">
-                {slide.title}
-              </span>
-            </h1>
-
-            {/* Professional Title */}
-            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-700 dark:text-gray-300">
-              {slide.subtitle}
-            </h2>
-
-            {/* Description */}
-            <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed px-4">
-              {slide.description}
-            </p>
-
-            {/* Location */}
-            <div className="flex items-center justify-center text-gray-600 dark:text-gray-400">
-              <svg className="w-4 h-4 md:w-5 md:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              <span className="text-sm md:text-base">Istanbul, Turkey</span>
-            </div>
-
-            {/* Skills Preview */}
-            <div className="flex flex-wrap gap-2 justify-center">
-              {slide.skills.map((skill) => {
-                const colors = getTechBadgeColors(skill);
-                return (
-                  <Badge
-                    key={skill}
-                    text={skill}
-                    bgColor={colors.bgColor}
-                    textColor={colors.textColor}
-                    borderColor={colors.borderColor}
-                    size="sm"
-                    className="backdrop-blur-sm"
-                  />
-                );
-              })}
-            </div>
-
+          <div className="flex lg:hidden flex-col items-center text-center h-full justify-center py-2 space-y-5 -mt-8">
             {/* Profile Image */}
-            <div className="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 mx-auto relative">
-              <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800 rounded-2xl flex items-center justify-center text-2xl sm:text-3xl md:text-4xl font-bold text-white shadow-2xl border border-gray-600">
+            <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto relative">
+              <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800 rounded-2xl flex items-center justify-center text-lg sm:text-xl font-bold text-white shadow-2xl border border-gray-600">
                 MJ
               </div>
               {/* Status indicator */}
-              <div className="absolute -bottom-1 -right-1 w-6 h-6 md:w-8 md:h-8 bg-emerald-500 rounded-full border-2 border-white dark:border-slate-900 flex items-center justify-center">
-                <svg className="w-3 h-3 md:w-4 md:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 sm:w-5 sm:h-5 bg-emerald-500 rounded-full border-2 border-white dark:border-slate-900 flex items-center justify-center">
+                <svg className="w-2 h-2 sm:w-2.5 sm:h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
             </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col gap-3 w-full max-w-xs">
-              {slide.buttons.map((button, index) => (
-                <CustomButton
-                  key={index}
-                  onClick={button.action}
-                  variant={button.variant}
-                  size="md"
-                  className="shadow-xl hover:shadow-2xl w-full"
-                >
-                  {getIcon(button.icon)}
-                  {button.text}
-                </CustomButton>
-              ))}
+            {/* All Content Under Heading */}
+            <div className="flex flex-col items-center space-y-3 px-2">
+              {/* Main Heading */}
+              <div className="space-y-2">
+                <h1 className="text-xl sm:text-2xl font-bold leading-tight">
+                  <span className="text-gray-900 dark:text-white">Hi, I'm</span>
+                  <br />
+                  <span className="bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800 dark:from-gray-100 dark:via-white dark:to-gray-200 bg-clip-text text-transparent">
+                    {slide.title}
+                  </span>
+                </h1>
+
+                {/* Professional Title */}
+                <h2 className="text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-300">
+                  {slide.subtitle}
+                </h2>
+              </div>
+
+              {/* Description */}
+              <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 leading-relaxed max-w-xs mx-auto">
+                I create scalable web applications using the MERN stack and engaging interactive experiences with Unity.
+              </p>
+
+              {/* Location */}
+              <div className="flex items-center justify-center text-gray-600 dark:text-gray-400">
+                <svg className="w-3 h-3 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span className="text-xs">Istanbul, Turkey</span>
+              </div>
+
+              {/* Skills Preview */}
+              <div className="flex flex-wrap gap-1 justify-center max-w-xs mx-auto">
+                {slide.skills.map((skill) => {
+                  const colors = getTechBadgeColors(skill);
+                  return (
+                    <Badge
+                      key={skill}
+                      text={skill}
+                      bgColor={colors.bgColor}
+                      textColor={colors.textColor}
+                      borderColor={colors.borderColor}
+                      size="xs"
+                      className="backdrop-blur-sm text-xs px-2 py-1"
+                    />
+                  );
+                })}
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col gap-2 w-full max-w-xs">
+                {slide.buttons.map((button, index) => (
+                  <CustomButton
+                    key={index}
+                    onClick={button.action}
+                    variant={button.variant}
+                    size="sm"
+                    className="shadow-lg hover:shadow-xl w-full text-xs py-2"
+                  >
+                    {getIcon(button.icon)}
+                    {button.text}
+                  </CustomButton>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -415,11 +430,11 @@ const HeroSection = () => {
     } else {
       // Project slide
       return (
-        <div className="w-full h-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12 lg:py-0">
+        <div className="w-full h-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-6 md:py-12 lg:py-0">
           {/* Mobile/Tablet: Single Column Layout */}
-          <div className={`flex lg:hidden flex-col items-center text-center space-y-4 h-full justify-center ${slide.backgroundImage || slide.backgroundVideo ? 'text-white' : ''}`}>
+          <div className={`flex lg:hidden flex-col items-center text-center space-y-3 sm:space-y-4 h-full justify-center py-4 ${slide.backgroundImage || slide.backgroundVideo ? 'text-white' : ''}`}>
             {/* Project Title */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight px-2">
               <span className={slide.backgroundImage || slide.backgroundVideo ? 
                 "text-white drop-shadow-lg" : 
                 "bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800 dark:from-gray-100 dark:via-white dark:to-gray-200 bg-clip-text text-transparent"
@@ -430,22 +445,22 @@ const HeroSection = () => {
 
             {/* Project Type */}
             <h2 className={slide.backgroundImage || slide.backgroundVideo ? 
-              "text-lg sm:text-xl md:text-2xl font-semibold text-white/90 drop-shadow-md" :
-              "text-lg sm:text-xl md:text-2xl font-semibold text-gray-700 dark:text-gray-300"
+              "text-base sm:text-lg md:text-xl font-semibold text-white/90 drop-shadow-md px-2" :
+              "text-base sm:text-lg md:text-xl font-semibold text-gray-700 dark:text-gray-300 px-2"
             }>
               {slide.subtitle}
             </h2>
 
             {/* Description */}
             <p className={slide.backgroundImage || slide.backgroundVideo ?
-              "text-base md:text-lg text-white/80 leading-relaxed drop-shadow-sm px-4" :
-              "text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed px-4"
+              "text-sm sm:text-base md:text-lg text-white/80 leading-relaxed drop-shadow-sm px-6 max-w-sm sm:max-w-md" :
+              "text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed px-6 max-w-sm sm:max-w-md"
             }>
               {slide.description}
             </p>
 
             {/* Tech Stack */}
-            <div className="flex flex-wrap gap-2 md:gap-3 justify-center">
+            <div className="flex flex-wrap gap-1.5 sm:gap-2 justify-center px-4 max-w-sm sm:max-w-md">
               {slide.tech.map((tech) => {
                 const colors = getTechBadgeColors(tech);
                 return (
@@ -455,15 +470,15 @@ const HeroSection = () => {
                     bgColor={colors.bgColor}
                     textColor={colors.textColor}
                     borderColor={colors.borderColor}
-                    size="md"
-                    className="backdrop-blur-sm"
+                    size="xs"
+                    className="backdrop-blur-sm text-xs"
                   />
                 );
               })}
             </div>
 
             {/* Project Icon */}
-            <div className="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 mx-auto relative">
+            <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mx-auto relative">
               {slide.iconImage ? (
                 <div className="w-full h-full bg-transparent rounded-2xl flex items-center justify-center shadow-2xl overflow-hidden">
                   <img 
@@ -476,7 +491,7 @@ const HeroSection = () => {
                 <div className="w-full h-full flex items-center justify-center">
                   <span className="text-slate-900 dark:text-white
                     transition-all duration-300
-                    text-2xl sm:text-3xl md:text-4xl
+                    text-xl sm:text-2xl md:text-3xl
                     font-sans font-extrabold
                     tracking-tight
                     drop-shadow-[0_1px_1px_rgba(0,0,0,0.3)]">
@@ -496,14 +511,14 @@ const HeroSection = () => {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col gap-3 w-full max-w-xs">
+            <div className="flex flex-col gap-2.5 sm:gap-3 w-full max-w-xs px-4">
               {slide.buttons.map((button, index) => (
                 <CustomButton
                   key={index}
                   onClick={button.action}
                   variant={button.variant}
-                  size="md"
-                  className="shadow-xl hover:shadow-2xl w-full"
+                  size="sm"
+                  className="shadow-lg hover:shadow-xl w-full text-sm py-2.5"
                 >
                   {getIcon(button.icon)}
                   {button.text}
@@ -653,9 +668,9 @@ const HeroSection = () => {
           style={{ touchAction: 'pan-y' }}
         >
           <div 
-            className="flex transition-transform duration-500 ease-in-out w-full h-full"
+            className={`flex w-full h-full ${isDragging ? 'transition-none' : 'transition-transform duration-300 ease-out'}`}
             style={{ 
-              transform: `translateX(${-currentSlide * 100 + (dragOffset / window.innerWidth) * 100}%)` 
+              transform: `translateX(${-currentSlide * 100 + (dragOffset * 0.05)}%)` 
             }}
           >
             {slides.map((slide) => (
@@ -706,18 +721,20 @@ const HeroSection = () => {
         {/* Navigation Arrows - Desktop only */}
         <button
           onClick={prevSlide}
-          className="hidden lg:flex absolute left-4 sm:left-8 md:left-16 lg:left-24 top-1/2 transform -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border border-gray-300 dark:border-slate-600 rounded-full items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 z-20"
+          className="hidden lg:flex absolute left-4 sm:left-8 md:left-16 lg:left-24 top-1/2 transform -translate-y-1/2 w-12 h-12 transition-all duration-500 ease-in-out text-white bg-blue-600 border border-blue-600 hover:bg-blue-700 hover:border-blue-700 dark:text-blue-400 dark:bg-blue-900/20 dark:border-blue-800 dark:hover:bg-blue-900/30 dark:hover:text-blue-300 backdrop-blur-lg rounded-full items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-2 dark:focus:ring-offset-gray-900 z-20"
+          aria-label="Previous slide"
         >
-          <svg className="w-5 h-5 md:w-6 md:h-6 text-gray-700 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
 
         <button
           onClick={nextSlide}
-          className="hidden lg:flex absolute right-4 sm:right-8 md:right-16 lg:right-24 top-1/2 transform -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border border-gray-300 dark:border-slate-600 rounded-full items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 z-20"
+          className="hidden lg:flex absolute right-4 sm:right-8 md:right-16 lg:right-24 top-1/2 transform -translate-y-1/2 w-12 h-12 transition-all duration-500 ease-in-out text-white bg-blue-600 border border-blue-600 hover:bg-blue-700 hover:border-blue-700 dark:text-blue-400 dark:bg-blue-900/20 dark:border-blue-800 dark:hover:bg-blue-900/30 dark:hover:text-blue-300 backdrop-blur-lg rounded-full items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-2 dark:focus:ring-offset-gray-900 z-20"
+          aria-label="Next slide"
         >
-          <svg className="w-5 h-5 md:w-6 md:h-6 text-gray-700 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
@@ -756,9 +773,22 @@ const HeroSection = () => {
         {/* Scroll Indicator - only show on hero slide */}
         {currentSlide === 0 && (
           <div className="absolute bottom-16 md:bottom-20 left-1/2 transform -translate-x-1/2 text-center z-20">
-            <div className="text-gray-600 dark:text-gray-400 text-xs md:text-sm mb-1 md:mb-2">Scroll to explore</div>
-            <div className="w-5 h-8 md:w-6 md:h-10 border-2 border-gray-600 dark:border-gray-400 rounded-full mx-auto relative">
-              <div className="w-1 h-2 md:h-3 bg-gray-600 dark:bg-gray-400 rounded-full absolute top-1.5 md:top-2 left-1/2 transform -translate-x-1/2 animate-bounce"></div>
+            {/* Mobile/Tablet - Touch/Swipe Indicator */}
+            <div className="block lg:hidden">
+              <div className="text-gray-600 dark:text-gray-400 text-xs mb-1">Scroll to explore</div>
+              <div className="flex flex-col items-center justify-center">
+                <svg className="w-5 h-5 text-gray-600 dark:text-gray-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+              </div>
+            </div>
+            
+            {/* Desktop - Mouse Scroll Indicator */}
+            <div className="hidden lg:block">
+              <div className="text-gray-600 dark:text-gray-400 text-sm mb-2">Scroll to explore</div>
+              <div className="w-6 h-10 border-2 border-gray-600 dark:border-gray-400 rounded-full mx-auto relative">
+                <div className="w-1 h-3 bg-gray-600 dark:bg-gray-400 rounded-full absolute top-2 left-1/2 transform -translate-x-1/2 animate-bounce"></div>
+              </div>
             </div>
           </div>
         )}

@@ -14,9 +14,9 @@ const Footer = () => {
           {/* Navigation Links */}
           <div className="flex flex-wrap justify-center md:justify-end space-x-6 mb-6 md:mb-0">
             <a href="/" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Home</a>
-            <a href="/about" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">About</a>
+            <a href="/projects" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Projects</a>
             <a href="/contact" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact</a>
-            <a href="https://github.com/Mohammad-Jada" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">GitHub</a>
+            <a href="https://github.com/moeJ8" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">GitHub</a>
           </div>
         </div>
         

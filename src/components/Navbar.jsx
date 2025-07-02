@@ -60,18 +60,19 @@ const Navbar = () => {
               </span>
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-2xl font-bold text-slate-900 dark:text-white transition-colors duration-300">
-                Mohammad Jada
+              <h1 className="text-xl lg:text-2xl font-bold text-slate-900 dark:text-white transition-colors duration-300">
+                <span className="lg:hidden">Mohammad</span>
+                <span className="hidden lg:inline">Mohammad Jada</span>
               </h1>
-              <p className="text-sm text-gray-500 dark:text-gray-400 font-medium transition-colors duration-300">Fullstack Developer</p>
+              <p className="text-xs lg:text-sm text-gray-500 dark:text-gray-400 font-medium transition-colors duration-300">Fullstack Developer</p>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden lg:flex items-center space-x-4 xl:space-x-6">
             <Link
               to="/"
-              className="relative px-4 py-2 text-gray-700 dark:text-gray-300 font-medium transition-all duration-300 hover:text-blue-600 dark:hover:text-blue-400 group"
+              className="relative px-2 lg:px-4 py-2 text-gray-700 dark:text-gray-300 font-medium transition-all duration-300 hover:text-blue-600 dark:hover:text-blue-400 group"
             >
               <span className="relative z-10">Home</span>
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
@@ -80,7 +81,7 @@ const Navbar = () => {
             
             <Link
               to="/contact"
-              className="relative px-4 py-2 text-gray-700 dark:text-gray-300 font-medium transition-all duration-300 hover:text-blue-600 dark:hover:text-blue-400 group"
+              className="relative px-2 lg:px-4 py-2 text-gray-700 dark:text-gray-300 font-medium transition-all duration-300 hover:text-blue-600 dark:hover:text-blue-400 group"
             >
               <span className="relative z-10">Contact</span>
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
@@ -89,7 +90,7 @@ const Navbar = () => {
             
             <Link
               to="/projects"
-              className="relative px-4 py-2 text-gray-700 dark:text-gray-300 font-medium transition-all duration-300 hover:text-blue-600 dark:hover:text-blue-400 group"
+              className="relative px-2 lg:px-4 py-2 text-gray-700 dark:text-gray-300 font-medium transition-all duration-300 hover:text-blue-600 dark:hover:text-blue-400 group"
             >
               <span className="relative z-10">Projects</span>
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
@@ -106,12 +107,13 @@ const Navbar = () => {
               size="md"
               className="shadow-lg hover:shadow-xl backdrop-blur-lg rounded-full"
             >
-              Connect With Me
+              <span className="hidden xl:inline">Connect With Me</span>
+              <span className="xl:hidden">Connect</span>
             </CustomButton>
           </div>
 
           {/* Mobile menu button and dark mode toggle */}
-          <div className="md:hidden flex items-center space-x-2">
+          <div className="lg:hidden flex items-center space-x-2">
             <DarkModeToggle />
             <button
               ref={menuButtonRef}
@@ -133,7 +135,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Navigation Menu */}
-        <div className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+        <div className={`lg:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
           <div 
             ref={menuRef}
             className="px-2 pt-2 pb-6 space-y-1 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md rounded-lg mt-2 shadow-lg border border-gray-200/50 dark:border-gray-700/50 transition-colors duration-300"

@@ -14,15 +14,15 @@ const ProjectCard = ({
   className = ""
 }) => {
   return (
-    <div className={`bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 ${className}`}>
-      {/* Card Header */}
-      <div className="flex items-start justify-between mb-4">
+    <div className={`bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 ${className}`}>
+      {/* Card Header - Mobile: Stack vertically, Desktop: Side by side */}
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 space-y-3 sm:space-y-0">
         {icon && (
-          <div className="mr-4">
+          <div className="flex justify-center sm:justify-start sm:mr-4">
             {icon}
           </div>
         )}
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5 sm:gap-2 justify-center sm:justify-end">
           {badges.map((badge, index) => (
             <Badge
               key={index}
@@ -36,22 +36,23 @@ const ProjectCard = ({
         </div>
       </div>
       
-      <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 transition-colors duration-300">
+      <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2 text-center sm:text-left transition-colors duration-300">
         {title}
       </h3>
-      <p className="text-slate-600 dark:text-slate-300 mb-4 transition-colors duration-300">
+      <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4 text-center sm:text-left leading-relaxed transition-colors duration-300">
         {description}
       </p>
       
-      <div className="flex items-center justify-between">
-        <div className="text-sm text-slate-500 dark:text-slate-400">
+      {/* Footer and Button - Mobile: Stack vertically, Desktop: Side by side */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
+        <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 text-center sm:text-left">
           <span>{footer}</span>
         </div>
         <CustomButton
           onClick={onButtonClick}
           variant={buttonVariant}
           size="sm"
-          className="shadow-lg hover:shadow-xl"
+          className="shadow-lg hover:shadow-xl w-full sm:w-auto"
         >
           {buttonIcon && (
             typeof buttonIcon === 'string' ? (

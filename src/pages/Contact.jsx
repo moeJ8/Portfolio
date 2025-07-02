@@ -62,28 +62,28 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-slate-950 dark:via-slate-950 dark:to-slate-950 transition-colors duration-300">
-      <div className="max-w-4xl mx-auto px-4 py-16">
+      <div className="max-w-4xl mx-auto px-4 py-12 sm:py-16">
         {/* Contact Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-4 transition-colors duration-300">
+        <div className="text-center mb-8 sm:mb-12">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white mb-3 sm:mb-4 transition-colors duration-300">
             Get In Touch
           </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-300 mb-6 transition-colors duration-300">
+          <p className="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-300 mb-4 sm:mb-6 transition-colors duration-300 px-2">
             Let's discuss your next project or opportunity
           </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto"></div>
+          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto"></div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Contact Information */}
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             <div>
-              <h2 className="text-2xl font-semibold text-slate-900 dark:text-white mb-6 transition-colors duration-300">
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold text-slate-900 dark:text-white mb-4 sm:mb-6 transition-colors duration-300">
                 Contact Information
               </h2>
               
               {/* Email */}
-              <div className="flex items-center space-x-4 mb-6">
+              <div className="flex items-center space-x-3 sm:space-x-4 mb-4 sm:mb-6">
                 <div className="flex-shrink-0">
                   <PlatformIcon platform="blue" size="sm">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -92,13 +92,13 @@ const Contact = () => {
                   </PlatformIcon>
                 </div>
                 <div>
-                  <h3 className="text-lg font-medium text-slate-900 dark:text-white transition-colors duration-300">Email</h3>
-                  <p className="text-slate-600 dark:text-slate-300 transition-colors duration-300">mohammadmjc@gmail.com</p>
+                  <h3 className="text-base sm:text-lg font-medium text-slate-900 dark:text-white transition-colors duration-300">Email</h3>
+                  <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 transition-colors duration-300 break-all sm:break-normal">mohammadmjc@gmail.com</p>
                 </div>
               </div>
 
               {/* Location */}
-              <div className="flex items-center space-x-4 mb-6">
+              <div className="flex items-center space-x-3 sm:space-x-4 mb-4 sm:mb-6">
                 <div className="flex-shrink-0">
                   <PlatformIcon platform="purple" size="sm">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -108,13 +108,13 @@ const Contact = () => {
                   </PlatformIcon>
                 </div>
                 <div>
-                  <h3 className="text-lg font-medium text-slate-900 dark:text-white transition-colors duration-300">Location</h3>
-                  <p className="text-slate-600 dark:text-slate-300 transition-colors duration-300">Istanbul, Turkey</p>
+                  <h3 className="text-base sm:text-lg font-medium text-slate-900 dark:text-white transition-colors duration-300">Location</h3>
+                  <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 transition-colors duration-300">Istanbul, Turkey</p>
                 </div>
               </div>
 
               {/* Availability */}
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-3 sm:space-x-4">
                 <div className="flex-shrink-0">
                   <PlatformIcon platform="green" size="sm">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -123,16 +123,16 @@ const Contact = () => {
                   </PlatformIcon>
                 </div>
                 <div>
-                  <h3 className="text-lg font-medium text-slate-900 dark:text-white transition-colors duration-300">Availability</h3>
-                  <p className="text-slate-600 dark:text-slate-300 transition-colors duration-300">Available for freelance projects</p>
+                  <h3 className="text-base sm:text-lg font-medium text-slate-900 dark:text-white transition-colors duration-300">Availability</h3>
+                  <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 transition-colors duration-300">Available for freelance projects</p>
                 </div>
               </div>
             </div>
 
             {/* Social Links */}
             <div>
-              <h3 className="text-lg font-medium text-slate-900 dark:text-white mb-4 transition-colors duration-300">Follow Me</h3>
-              <div className="flex space-x-4">
+              <h3 className="text-base sm:text-lg font-medium text-slate-900 dark:text-white mb-3 sm:mb-4 transition-colors duration-300">Follow Me</h3>
+              <div className="flex space-x-3 sm:space-x-4">
                 <a href="https://www.linkedin.com/in/mohammad-jada-91209b2a3/" target="_blank" rel="noopener noreferrer">
                   <PlatformIcon platform="linkedin" size="xs">
                     <svg fill="currentColor" viewBox="0 0 24 24">
@@ -140,7 +140,7 @@ const Contact = () => {
                     </svg>
                   </PlatformIcon>
                 </a>
-                <a href="https://github.com/Mohammad-Jada" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/moeJ8" target="_blank" rel="noopener noreferrer">
                   <PlatformIcon platform="github" size="xs">
                     <svg fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.30.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
@@ -157,11 +157,11 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-2xl p-8 shadow-xl transition-all duration-300">
-            <h2 className="text-2xl font-semibold text-slate-900 dark:text-white mb-6 transition-colors duration-300">
+          <div className="bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl transition-all duration-300">
+            <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold text-slate-900 dark:text-white mb-4 sm:mb-6 transition-colors duration-300">
               Send Me a Message
             </h2>
-            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">
                   Your Name
@@ -173,7 +173,7 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-white transition-colors duration-300"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-white transition-colors duration-300 text-sm sm:text-base"
                   placeholder="Enter your name"
                 />
               </div>
@@ -189,7 +189,7 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-white transition-colors duration-300"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-white transition-colors duration-300 text-sm sm:text-base"
                   placeholder="Enter your email"
                 />
               </div>
@@ -205,7 +205,7 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-white transition-colors duration-300"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-white transition-colors duration-300 text-sm sm:text-base"
                   placeholder="Project inquiry, collaboration, etc."
                 />
               </div>
@@ -220,44 +220,45 @@ const Contact = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows={6}
-                  className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-white transition-colors duration-300"
+                  rows={5}
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-white transition-colors duration-300 text-sm sm:text-base resize-none"
                   placeholder="Tell me about your project or what you'd like to discuss..."
                 ></textarea>
               </div>
 
               {/* Success/Error Messages */}
               {submitStatus === 'success' && (
-                <div className="bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-600 text-green-700 dark:text-green-300 px-4 py-3 rounded-lg">
+                <div className="bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-600 text-green-700 dark:text-green-300 px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg">
                   <div className="flex items-center">
-                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span>Message sent successfully! I'll get back to you soon.</span>
+                    <span className="text-sm sm:text-base">Message sent successfully! I'll get back to you soon.</span>
                   </div>
                 </div>
               )}
 
               {submitStatus === 'error' && (
-                <div className="bg-red-100 dark:bg-red-900/30 border border-red-300 dark:border-red-600 text-red-700 dark:text-red-300 px-4 py-3 rounded-lg">
+                <div className="bg-red-100 dark:bg-red-900/30 border border-red-300 dark:border-red-600 text-red-700 dark:text-red-300 px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg">
                   <div className="flex items-center">
-                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <span>Failed to send message. Please try again or contact me directly.</span>
+                    <span className="text-sm sm:text-base">Failed to send message. Please try again or contact me directly.</span>
                   </div>
                 </div>
               )}
               
               <CustomButton
                 type="submit"
+                variant="blueAnimated"
                 size="lg"
                 disabled={isSubmitting}
                 loading={isSubmitting}
                 className="w-full"
               >
                 {!isSubmitting && (
-                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                   </svg>
                 )}
