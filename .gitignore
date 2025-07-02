@@ -23,6 +23,13 @@ dist-ssr
 *.sln
 *.sw?
 
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
 # Conversation history files
 public/cursor_analyze_and_review_my_files.md
 public/cursor_transforming_course_portfolio_to.md
