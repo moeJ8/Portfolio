@@ -6,9 +6,13 @@ import GameDownload from '../components/game/GameDownload';
 import CustomButton from '../components/CustomButton';
 import DownloadModal from '../components/DownloadModal';
 import { useNavigate } from 'react-router-dom';
+import { getFileInfo } from '../utils/downloadManager';
 
 const RollerBowler = () => {
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
+
+  // Get file info from centralized configuration
+  const fileInfo = getFileInfo('roller-bawler');
 
   const gameData = {
     title: "Roller Bawler",
@@ -32,18 +36,11 @@ const RollerBowler = () => {
       "Smooth camera follow system",
       "Optimized performance for smooth gameplay"
     ],
-    file: {
-      name: "Roller Bawler",
-      filename: "roller-bawler.zip",
-      size: "45.2 MB",
-      type: "Windows Game",
-      url: "/games/roller-bawler.zip",
-      description: "A 3D platformer game featuring ball physics and challenging levels. Built with Unity and C#."
-    },
+    file: fileInfo, // Use centralized file configuration
     instructions: [
       "Download the game file from the button below",
       "Extract the ZIP file to your desired location",
-              "Run 'Roller Bawler.exe' to start the game",
+      "Run 'Roller Bawler.exe' to start the game",
       "Use WASD or arrow keys to control the ball and enjoy!"
     ]
   };

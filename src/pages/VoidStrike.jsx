@@ -6,9 +6,13 @@ import GameDownload from '../components/game/GameDownload';
 import CustomButton from '../components/CustomButton';
 import DownloadModal from '../components/DownloadModal';
 import { useNavigate } from 'react-router-dom';
+import { getFileInfo } from '../utils/downloadManager';
 
 const VoidStrike = () => {
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
+
+  // Get file info from centralized configuration
+  const fileInfo = getFileInfo('void-strike');
 
   const gameData = {
     title: "Void Strike",
@@ -32,14 +36,7 @@ const VoidStrike = () => {
       "Progressive wave-based gameplay",
       "High score tracking"
     ],
-    file: {
-      name: "Void Strike",
-      filename: "void-strike.zip",
-      size: "32.8 MB",
-      type: "Windows Game",
-      url: "/games/void-strike.zip",
-      description: "A 2D space shooter game with intense action and progressive difficulty. Features smooth controls and retro-style graphics."
-    },
+    file: fileInfo, // Use centralized file configuration
     instructions: [
       "Download the game file from the button below",
       "Extract the ZIP file to your desired location", 

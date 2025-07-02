@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import CustomButton from './CustomButton';
 import DownloadModal from './DownloadModal';
 import Badge from './Badge';
+import { getFileInfo } from '../utils/downloadManager';
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -24,14 +25,7 @@ const HeroSection = () => {
   };
 
   const handleDownloadCV = () => {
-    const cvFile = {
-      name: "Mohammad Jada - CV",
-      filename: "Mohammad_Jada_CV.pdf",
-      size: "2.4 MB",
-      type: "PDF Document",
-      url: "/Mohammad_Jada_CV.pdf",
-      description: "Professional CV showcasing experience in fullstack development with MERN stack, Unity game development, and project portfolio including Glim.blog and Rahalatek."
-    };
+    const cvFile = getFileInfo('cv');
     setSelectedFile(cvFile);
     setIsDownloadModalOpen(true);
   };
