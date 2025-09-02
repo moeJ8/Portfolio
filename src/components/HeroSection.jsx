@@ -246,10 +246,11 @@ const HeroSection = () => {
           <div className="flex lg:hidden flex-col items-center text-center h-full justify-center py-2 space-y-5 -mt-8">
             {/* Profile Image */}
             <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto relative">
-              <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800 rounded-2xl flex items-center justify-center text-lg sm:text-xl font-bold text-white shadow-2xl border border-gray-600">
-                MJ
-              </div>
-
+              <img 
+                src="/pic4.jpeg" 
+                alt="Mohammad Jada - Fullstack Developer"
+                className="w-full h-full object-cover rounded-2xl shadow-2xl border-2 border-gray-300 dark:border-gray-600"
+              />
             </div>
 
             {/* All Content Under Heading */}
@@ -374,12 +375,13 @@ const HeroSection = () => {
               <div className="relative">
                 {/* Main Profile Area */}
                 <div className="relative z-10 bg-gradient-to-br from-white/80 to-gray-50/90 dark:from-slate-900/50 dark:to-slate-800/30 backdrop-blur-lg border border-gray-300/50 dark:border-slate-600/40 rounded-2xl p-8 shadow-2xl">
-                  {/* Profile Image Placeholder */}
+                  {/* Profile Image */}
                   <div className="w-64 h-64 mx-auto mb-6 relative">
-                    <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800 rounded-2xl flex items-center justify-center text-6xl font-bold text-white shadow-2xl border border-gray-600">
-                      MJ
-                    </div>
-
+                                         <img 
+                       src="/pic4.jpeg" 
+                       alt="Mohammad Jada - Fullstack Developer & Game Designer"
+                       className="w-full h-full object-cover rounded-2xl shadow-2xl border-4 border-gray-300 dark:border-gray-600"
+                     />
                   </div>
 
                   {/* Skills Preview */}

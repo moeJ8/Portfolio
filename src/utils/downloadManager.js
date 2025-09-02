@@ -109,13 +109,13 @@ export const GAME_FILES = {
     releaseDate: "2024-01-10"
   },
   'cv': {
-    name: "Mohammad Jada - CV",
-    filename: "Mohammad_Jada_CV.pdf",
-    size: "174.0 KB",
-    sizeBytes: 178200,
+    name: "Mohammad Jada - Resume",
+    filename: "Mohammad Jada - Resume.pdf",
+    size: "200.0 KB",
+    sizeBytes: 204800,
     type: "PDF Document",
-    url: `${STORAGE_CONFIG.AWS_S3_BASE_URL}Mohammad_Jada_CV.pdf`,
-    description: "Professional CV showcasing experience in fullstack development with MERN stack, Unity game development, and project portfolio."
+    url: "/Mohammad Jada - Resume.pdf",
+    description: "Professional resume showcasing experience in fullstack development with MERN stack, Unity game development, and comprehensive project portfolio."
   }
 };
 

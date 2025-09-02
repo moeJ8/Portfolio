@@ -267,7 +267,7 @@ const DownloadModal = ({ isOpen, onClose, file }) => {
             
             <CustomButton
               onClick={handleCancel}
-              variant="red"
+              variant="redAnimated"
               size="lg"
             >
               {isDownloading ? 'Cancel' : 'Close'}

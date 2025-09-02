@@ -4,6 +4,7 @@ import ProfessionalOverview from '../components/ProfessionalOverview';
 import WebProjectsSection from '../components/WebProjectsSection';
 import GameProjectsSection from '../components/GameProjectsSection';
 import CustomButton from '../components/CustomButton';
+import { FadeInUp, FadeInLeft, FadeInRight } from '../components/ScrollAnimation';
 
 const Projects = () => {
   const navigate = useNavigate();
@@ -11,13 +12,21 @@ const Projects = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-slate-950 dark:via-slate-950 dark:to-slate-950 transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-4 py-16">
-        <AboutHeader />
-        <ProfessionalOverview />
-        <WebProjectsSection />
-        <GameProjectsSection />
+        <FadeInUp>
+          <AboutHeader />
+        </FadeInUp>
+        <FadeInLeft>
+          <ProfessionalOverview />
+        </FadeInLeft>
+        <FadeInRight>
+          <WebProjectsSection />
+        </FadeInRight>
+        <FadeInLeft>
+          <GameProjectsSection />
+        </FadeInLeft>
         
         {/* Call to Action Section */}
-        <div className="mt-20 text-center">
+        <FadeInUp className="mt-20 text-center">
           <div className="bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-2xl p-12 shadow-xl">
             <div className="max-w-2xl mx-auto">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white mb-4 transition-colors duration-300">
@@ -55,7 +64,7 @@ const Projects = () => {
 
             </div>
           </div>
-        </div>
+        </FadeInUp>
       </div>
     </div>
   );

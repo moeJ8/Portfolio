@@ -3,6 +3,7 @@ import emailjs from '@emailjs/browser';
 import CustomButton from '../components/CustomButton';
 import PlatformIcon from '../components/PlatformIcon';
 import { SiItchdotio } from 'react-icons/si';
+import { FadeInUp, FadeInLeft, FadeInRight } from '../components/ScrollAnimation';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -64,7 +65,7 @@ const Contact = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-slate-950 dark:via-slate-950 dark:to-slate-950 transition-colors duration-300">
       <div className="max-w-4xl mx-auto px-4 py-12 sm:py-16">
         {/* Contact Header */}
-        <div className="text-center mb-8 sm:mb-12">
+        <FadeInUp className="text-center mb-8 sm:mb-12">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white mb-3 sm:mb-4 transition-colors duration-300">
             Get In Touch
           </h1>
@@ -72,11 +73,11 @@ const Contact = () => {
             Let's discuss your next project or opportunity
           </p>
           <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto"></div>
-        </div>
+        </FadeInUp>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Contact Information */}
-          <div className="space-y-6 sm:space-y-8">
+          <FadeInLeft className="space-y-6 sm:space-y-8">
             <div>
               <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold text-slate-900 dark:text-white mb-4 sm:mb-6 transition-colors duration-300">
                 Contact Information
@@ -154,10 +155,10 @@ const Contact = () => {
                 </a>
               </div>
             </div>
-          </div>
+          </FadeInLeft>
 
           {/* Contact Form */}
-          <div className="bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl transition-all duration-300">
+          <FadeInRight className="bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl transition-all duration-300">
             <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold text-slate-900 dark:text-white mb-4 sm:mb-6 transition-colors duration-300">
               Send Me a Message
             </h2>
@@ -265,7 +266,7 @@ const Contact = () => {
                 Send Message
               </CustomButton>
             </form>
-          </div>
+          </FadeInRight>
         </div>
       </div>
     </div>

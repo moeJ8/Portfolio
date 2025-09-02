@@ -1,0 +1,48 @@
+{
+  "name": "moe - Your Dev Pal | Mohammad Jada Portfolio",
+  "short_name": "moe - Dev Pal",
+  "description": "Professional portfolio of Mohammad Jada, expert fullstack developer and Unity game designer",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#2563eb",
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-US",
+  "dir": "ltr",
+  "categories": ["business", "productivity", "portfolio"],
+  "screenshots": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "1280x720",
+      "type": "image/svg+xml",
+      "form_factor": "wide",
+      "label": "Mohammad Jada Portfolio Homepage"
+    },
+    {
+      "src": "/favicon.svg", 
+      "sizes": "750x1334",
+      "type": "image/svg+xml",
+      "form_factor": "narrow",
+      "label": "Portfolio Mobile View"
+    }
+  ]
+}

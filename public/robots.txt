@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://moepal.com/sitemap.xml
+
+# Block access to sensitive files
+Disallow: /.env
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /*.log
+Disallow: /package*.json
+
+# Allow important assets
+Allow: /assets/
+Allow: /favicon.svg
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.pdf
+Allow: /*.mp4
+
+# Crawl delay (optional - helps with server load)
+Crawl-delay: 1

@@ -1,5 +1,8 @@
 import SkillsExpertiseSection from '../components/SkillsExpertiseSection';
+import CertificatesSection from '../components/CertificatesSection';
+import GitHubStats from '../components/GitHubStats';
 import CustomButton from '../components/CustomButton';
+import { FadeInUp, FadeInLeft, FadeInRight } from '../components/ScrollAnimation';
 import { useNavigate } from 'react-router-dom';
 
 const About = () => {
@@ -9,7 +12,7 @@ const About = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-slate-950 dark:via-slate-950 dark:to-slate-950 transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-4 py-16">
         {/* Page Header */}
-        <div className="text-center mb-12 sm:mb-16">
+        <FadeInUp className="text-center mb-12 sm:mb-16">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
             <span className="bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800 dark:from-slate-100 dark:via-white dark:to-slate-200 bg-clip-text text-transparent">
               About Me
@@ -20,10 +23,10 @@ const About = () => {
             <p className="text-sm mt-2">Building innovative web applications and interactive experiences</p>
           </div>
           <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-slate-400 via-slate-600 to-slate-400 dark:from-slate-500 dark:via-slate-300 dark:to-slate-500 mx-auto rounded-full"></div>
-        </div>
+        </FadeInUp>
 
         {/* Who I Am Section */}
-        <div className="mb-12">
+        <FadeInLeft className="mb-12">
           <div className="bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-2xl shadow-xl p-6 sm:p-8 transition-all duration-300">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4 transition-colors duration-300">Hey there!</h2>
             <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed transition-colors duration-300">
@@ -33,10 +36,10 @@ const About = () => {
               creating experiences that just work beautifully.
             </p>
           </div>
-        </div>
+        </FadeInLeft>
 
         {/* What I Do Section */}
-        <div className="mb-12">
+        <FadeInRight className="mb-12">
           <div className="bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-2xl shadow-xl p-6 sm:p-8 transition-all duration-300">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6 transition-colors duration-300">What I Do</h2>
             
@@ -58,15 +61,25 @@ const About = () => {
               </p>
             </div>
           </div>
-        </div>
+        </FadeInRight>
 
         {/* Skills Section */}
-        <div className="mb-12">
+        <FadeInUp className="mb-12">
           <SkillsExpertiseSection />
-        </div>
+        </FadeInUp>
+
+        {/* Certificates Section */}
+        <FadeInLeft className="mb-12">
+          <CertificatesSection />
+        </FadeInLeft>
+
+        {/* GitHub Stats Section */}
+        <FadeInRight className="mb-12">
+          <GitHubStats />
+        </FadeInRight>
 
         {/* About Me Section */}
-        <div className="mb-12">
+        <FadeInUp className="mb-12">
           <div className="bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-2xl shadow-xl p-6 sm:p-8 transition-all duration-300">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4 transition-colors duration-300">A bit more about me</h2>
             <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-4 transition-colors duration-300">
@@ -81,10 +94,10 @@ const About = () => {
                 I'm based in Istanbul, Turkey, but the internet means I can work with awesome people everywhere!
               </p>
           </div>
-        </div>
+        </FadeInUp>
 
         {/* Call to Action Section */}
-        <div className="mt-20 text-center">
+        <FadeInUp className="mt-20 text-center">
           <div className="bg-white/80 dark:bg-slate-950/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/40 rounded-2xl p-12 shadow-xl">
             <div className="max-w-2xl mx-auto">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white mb-4 transition-colors duration-300">
@@ -122,7 +135,7 @@ const About = () => {
 
             </div>
           </div>
-        </div>
+        </FadeInUp>
       </div>
     </div>
   );
